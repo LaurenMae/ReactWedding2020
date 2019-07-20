@@ -17,13 +17,10 @@ export default function RSVP() {
 
     const submitForm = (event) => {
         event.preventDefault();
-        console.log(values);
-       // insert data
-       insertUser();
+        // insertUser();
     };
 
     const insertUser = async () => {
-        console.log(values);
         await fetch('http://localhost:3001/insert', {
             method: 'post',
             mode: 'cors',
