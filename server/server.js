@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: '',
-        pass: ''
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD
     }
 });
 
@@ -20,12 +20,20 @@ app.listen(3001, function() {
 });
 
 app.post('/test/', async (req, res) => {
-
     try {
         const spreadsheetValues = [Object.values(req.body)];
         await updateSpreadsheet(spreadsheetValues);
         sendEmail(`RSVP, ${req.body.name}`, JSON.stringify(req.body));
         res.sendStatus(200);
+    } catch (err) {
+        throw err;
+    }
+});
+
+app.get('/getGuestList', async (req, res) => {
+    try {
+        const resp = await returnSpreadsheet();
+        res.send(resp);
     } catch (err) {
         throw err;
     }
@@ -39,6 +47,18 @@ const updateSpreadsheet = async(spreadsheetValues) => {
     } catch (err) {
         console.error(`Error updating spreadsheet: ${err}`);
         sendEmail('Wedding App Error', `Updating spreadsheet error: ${JSON.stringify(err)}`);
+        throw error;
+    }
+};
+
+const returnSpreadsheet = async() => {
+    try {
+        const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
+        const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
+        return await googleSheetsHelper.retrieveAndPrintSheet(jwtClient, weddingSpreadsheetId);
+    } catch (err) {
+        console.error(`Error reading spreadsheet: ${err}`);
+        sendEmail('Wedding App Error', `Reading spreadsheet error: ${JSON.stringify(err)}`);
         throw error;
     }
 };

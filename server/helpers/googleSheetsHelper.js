@@ -26,12 +26,15 @@ const retrieveAndPrintSheet = async (jwtClient, sheetId) => {
     const response = await sheets.spreadsheets.values.get({
       auth: jwtClient,
       spreadsheetId: sheetId,
-      range: 'A1:D4'
+      range: 'Guests!A2:B122'
     });
 
-    for (let row of response.data.values) {
-      console.log('Title [%s]\t\tRating [%s]', row[0], row[1]);
-    }
+    return response.data.values.map((row) => {
+      return {
+        firstName: row[0] ? row[0].toLowerCase() : '',
+        lastName: row[1] ? row[1].toLowerCase() : ''
+      };
+    });
   }
   catch (error) {
     console.error('Failed retrieving sheet data', error);
