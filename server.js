@@ -4,6 +4,9 @@ const cors = require('cors');
 const googleSheetsHelper = require('./helpers/googleSheetsHelper');
 const nodemailer = require('nodemailer');
 
+const port = process.env.PORT || 3001;
+const clientAppDirectory = 'client/build';
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -14,12 +17,13 @@ const transporter = nodemailer.createTransport({
 
 app.use(cors());
 app.use(require("body-parser").json());
+app.use(express.static(clientAppDirectory));
 
-app.listen(3001, function() {
-    console.log('listening on 3001');
+app.listen(port, function() {
+    console.log(`listening on ${port}`);
 });
 
-app.post('/test/', async (req, res) => {
+app.post('/api/test/', async (req, res) => {
 
     try {
         const spreadsheetValues = [Object.values(req.body)];
@@ -29,6 +33,10 @@ app.post('/test/', async (req, res) => {
     } catch (err) {
         throw err;
     }
+});
+
+app.get('*', function (req, res) {
+    res.status(200).sendFile(`/`, { root: clientAppDirectory });
 });
 
 const updateSpreadsheet = async(spreadsheetValues) => {
