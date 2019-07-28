@@ -1,23 +1,16 @@
 const { google } = require('googleapis');
-const privatekey = require("./WeddingApp-9068afdac0b5.json");
 const sheets = google.sheets('v4');
+const nconf = require('nconf');
 
 const createAndConnectJwtClient = async () => {
   const jwtClient = new google.auth.JWT(
-    privatekey.client_email,
+    nconf.get('client_email'),
     null,
-    privatekey.private_key,
+    nconf.get('private_key'),
     ['https://www.googleapis.com/auth/spreadsheets']
   );
 
-  try {
-    await jwtClient.authorize();
-  }
-  catch (error) {
-    console.error('Failed authenticating with Google', error);
-    process.exit(1);
-  }
-
+  await jwtClient.authorize();
   return jwtClient;
 }
 
@@ -43,7 +36,6 @@ const retrieveAndPrintSheet = async (jwtClient, sheetId) => {
 }
 
 const updateAndPrintSheet = async (jwtClient, spreadsheetId, values) => {
-  try {
     await sheets.spreadsheets.values.append({
       auth: jwtClient,
       spreadsheetId: spreadsheetId,
@@ -53,11 +45,6 @@ const updateAndPrintSheet = async (jwtClient, spreadsheetId, values) => {
         values
       }
     });
-  }
-  catch (error) {
-    console.error('Failed retrieving sheet data', error);
-    throw error;
-  }
 }
 
 module.exports = {
