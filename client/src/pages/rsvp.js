@@ -43,14 +43,16 @@ export default function RSVP() {
     return (
         <div>
             <Navbar />
-            <div className="container" style={{ width: "50%", textAlign: "left:"}}>
+            <div style={{width: '50em', margin: '2em', display: 'inline-block'}}>
+                <p>
+                    Please submit one RSVP per guest
+                </p>
                 <Form onSubmit={submitForm}>
-                    <FormGroup>
+                    <FormGroup style={{display: 'inline-flex', margin: '1em'}}>
                         <Label for="name">Guest Name</Label>
                         <Input type="text" name="name" id="name" value={values.name} onChange={handleInputChange} />
                     </FormGroup>
-                    <FormGroup tag="fieldset">
-                    <legend>Radio Buttons</legend>
+                    <FormGroup style={{display: 'inline-flex', margin: '1em'}}>
                         <FormGroup check>
                             <Label check>
                             <Input type="radio" name="attendance" value="attending" checked={values.attendance === "attending"} onChange={handleInputChange} />{' '}
@@ -64,13 +66,13 @@ export default function RSVP() {
                             </Label>
                         </FormGroup>
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup style={{display: 'grid', margin: '1em'}}>
                         <Label for="diet">Dietary Requirements</Label>
-                        <Input type="textarea" name="diet" id="diet" value={values.diet} onChange={handleInputChange} />
+                        <Input type="textarea" rows="5" name="diet" id="diet" value={values.diet} onChange={handleInputChange} />
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup style={{display: 'grid', margin: '1em'}}>
                         <Label for="song">Song Request</Label>
-                        <Input type="textarea" name="song" id="song" value={values.song} onChange={handleInputChange} />
+                        <Input type="textarea" rows="5" name="song" id="song" value={values.song} onChange={handleInputChange} />
                     </FormGroup>                      
                     <Button type="submit">Submit</Button>
                 </Form>

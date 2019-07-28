@@ -10,8 +10,8 @@ const clientAppDirectory = 'client/build';
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'lauren.mae.welsh@gmail.com',
-        pass: 'M@nygat3s'
+        user: '',
+        pass: ''
     }
 });
 
