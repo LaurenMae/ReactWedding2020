@@ -22,6 +22,15 @@
   color: #61dafb;
 }
 
+@font-face {
+  font-family: "Prestige Signature Script";
+  src: url('./GreatVibes-Regular.ttf') format("truetype");
+}
+
+.customfont_Prestige_Signature_Script {
+  font-family: "Prestige Signature Script";
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -29,4 +38,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(230, 235, 242, 0.6);
+  color: white;
+  width: 100%;
+  font-weight: 900;
+  height: 5em;
 }

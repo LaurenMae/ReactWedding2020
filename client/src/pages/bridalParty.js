@@ -11,20 +11,9 @@ export default function BridalParty() {
         <div>
             <Navbar />
             <div className="side-by-side-wrapper container">
-                <div className="left-col">
+                <div style={{textAlign: 'center', width: '100%', display: 'table'}}>
                     {
-                        BridalPartyList.Bride.map((partyMember, key) => {
-                            return (
-                                <BlurbContext.Provider value={partyMember} key={key}>
-                                    <Blurb />
-                                </BlurbContext.Provider>
-                            );
-                        })
-                    }
-                </div>
-                <div className="right-col">
-                    {
-                        BridalPartyList.Groom.map((partyMember, key) => {
+                        BridalPartyList.BridalParty.map((partyMember, key) => {
                             return (
                                 <BlurbContext.Provider value={partyMember} key={key}>
                                     <Blurb />

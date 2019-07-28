@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
@@ -17,7 +17,16 @@ export default function RSVP() {
 
     const submitForm = (event) => {
         event.preventDefault();
-        // insertUser();
+        update();
+    };
+
+    const update = async () => {
+        await fetch('http://localhost:3001/test', {
+            method: 'post',
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(values)
+        });
     };
 
     const insertUser = async () => {

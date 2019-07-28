@@ -1,0 +1,14 @@
+{
+    "Hotels": [
+        {
+            "name": "The Vale Resort",
+            "image": "theVale.jpg",
+            "text": "Free parking on site. Bed & Breakfast rate. Free access to facilities during stay. Free shuttle to and from Hensol Castle. Rooms available to book via https://www.valeresort.com/ or by calling 01443 667800"
+        },
+        {
+            "name": "Llantrisant Inn",
+            "image": "PremierInn.jpg",
+            "text": "Free parking on site. 15 minute taxi ride from Hensol Castle. Rooms available to book via https://www.premierinn.com/gb/en/hotels/wales/glamorgan/llantrisant/llantrisant.html"
+        }
+    ]
+}

@@ -4,13 +4,10 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "googleapis": "^40.0.1",
     "lodash": "^4.17.11",
-    "mongodb": "^3.2.7",
     "react": "^16.8.6",
     "react-bootstrap": "^0.32.4",
+    "react-date-countdown-timer": "^1.0.3",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.1",
     "reactstrap": "^8.0.0"
