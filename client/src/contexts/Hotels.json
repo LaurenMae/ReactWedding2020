@@ -1,14 +1,19 @@
 {
     "Hotels": [
         {
-            "name": "The Vale Resort",
-            "image": "theVale.jpg",
-            "text": "Free parking on site. Bed & Breakfast rate. Free access to facilities during stay. Free shuttle to and from Hensol Castle. Rooms available to book via https://www.valeresort.com/ or by calling 01443 667800"
+            "name": "Vale Resort",
+            "text": "Free shuttle to and from Hensol Castle",
+            "url": "https://www.valeresort.com/",
+            "phone": "01443667800",
+            "address": "Hensol Park",
+            "postcode": "CF72 8JY"
         },
         {
             "name": "Llantrisant Inn",
-            "image": "PremierInn.jpg",
-            "text": "Free parking on site. 15 minute taxi ride from Hensol Castle. Rooms available to book via https://www.premierinn.com/gb/en/hotels/wales/glamorgan/llantrisant/llantrisant.html"
+            "text": "15 minute taxi ride from Hensol Castle",
+            "address": "Gwaun Elai Magden Park",
+            "postcode": "CF72 8UX",
+            "url": "https://www.premierinn.com/gb/en/hotels/wales/glamorgan/llantrisant/llantrisant.html"
         }
     ]
 }
