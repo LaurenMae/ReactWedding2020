@@ -22,7 +22,3 @@ server/node_modules/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-server/helpers/credentials.json
-server/helpers/token.json
-server/helpers/WeddingApp-9068afdac0b5.json
