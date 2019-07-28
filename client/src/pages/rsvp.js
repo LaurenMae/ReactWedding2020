@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import _ from 'lodash';
 
-const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
-console.log(process.env);
+const apiUrl = _.get(process.env, 'REACT_APP_API_URL', 'http://localhost:3001');
 
 export default function RSVP() {
     const [values, setValues] = useState({
