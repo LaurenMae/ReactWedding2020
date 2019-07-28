@@ -25,3 +25,5 @@ yarn-error.log*
 server/helpers/credentials.json
 server/helpers/token.json
 config-overrides.json
+
+.env
