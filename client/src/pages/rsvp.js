@@ -3,6 +3,7 @@ import Navbar from '../components/navbar';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+console.log(process.env);
 
 export default function RSVP() {
     const [values, setValues] = useState({
