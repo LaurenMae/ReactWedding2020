@@ -3,9 +3,14 @@ const app = express();
 const cors = require('cors');
 const googleSheetsHelper = require('./helpers/googleSheetsHelper');
 const nodemailer = require('nodemailer');
+const nconf = require('nconf');
 
 const port = process.env.PORT || 3001;
 const clientAppDirectory = 'client/build';
+
+nconf.argv()
+    .env()
+    .file({ file: 'config-overrides.json' });
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',

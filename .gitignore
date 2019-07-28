@@ -24,4 +24,4 @@ yarn-error.log*
 
 server/helpers/credentials.json
 server/helpers/token.json
-WeddingApp-9068afdac0b5.json
+config-overrides.json
