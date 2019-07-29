@@ -7,9 +7,9 @@ export default function Home() {
     return (
         <div>
             <MyNavbar />
-            <div className="countdown" style={{fontSize: 'xx-large', position: 'relative'}}>
-                <img src={Hensol} width="100%" style={{height: '18em'}}/>
-                <div className="centered">
+            <div className="countdown" style={{fontSize: '5vw', position: 'relative'}}>
+                <img src={Hensol} width="100%"/>
+                <div className="centered" style={{padding: '2vw'}}>
                     <p>COUNT DOWN TO THE BIG DAY</p>
                     <DateCountdown dateTo='June 27, 2020 13:30:00 GMT+01:00'
                         mostSignificantFigure="day"
