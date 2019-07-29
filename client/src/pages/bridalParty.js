@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 
 import BridalPartyList from '../contexts/BridalParty.json';
 import { BlurbContext } from '../Context';
@@ -9,7 +9,7 @@ import Blurb from '../components/blurb';
 export default function BridalParty() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div className="side-by-side-wrapper container">
                 <div style={{textAlign: 'center', width: '100%', display: 'table'}}>
                     {

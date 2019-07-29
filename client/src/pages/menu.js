@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 
 export default function Menu() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div className="container">
                 <h4>STARTER</h4>
                 <b>Chicken Liver, Brandy and Herb Parfait</b><br />
