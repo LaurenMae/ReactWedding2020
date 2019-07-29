@@ -8,8 +8,8 @@ export default function Navbar() {
 
     return (
         <div>
-            <h2 className="customfont_Prestige_Signature_Script">Lauren & Jamie</h2>
-            <h3>27th June 2020</h3>
+            <h2 className="customfont_Prestige_Signature_Script" style={{fontSize: '10vw', margin: '4vw'}}>Lauren & Jamie</h2>
+            <h3 style={{fontSize: '5vw', margin: '2vw'}}>27th June 2020</h3>
             <div className="nav-container">
                 <div className="table">
                     <ul id="horizontal-list">
