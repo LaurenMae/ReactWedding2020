@@ -1,25 +1,29 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 
 export default function OrderOfService() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div>
-                <h3>1:15pm</h3>
-                Please take your seats
-                <h3>1:30pm</h3>
-                Ceremony
-                <h3>2:00pm</h3>
-                Fizz & Photos
-                <h3>4:00pm</h3>
-                Speeches & Dinner
-                <h3>7.30pm</h3>
-                First Dance
-                <h3>8:30pm</h3>
-                Dinner is Served
-                <h3>1:00am</h3>
-                Hometime
+                <p>
+                    <h3>13.15 - 13.30</h3>
+                    Please take your seats
+                    <h3>13.30</h3>
+                    Ceremony
+                    <h3>14.00</h3>
+                    Fizz & Photos
+                    <h3>16.00</h3>
+                    Speeches & Dinner
+                    <h3>19.30</h3>
+                    First Dance
+                    <h3>20.30</h3>
+                    Dinner is Served
+                    <h3>20.30 - 01.00</h3>
+                    Dancing
+                    <h3>01.00</h3>
+                    Hometime
+                </p>
             </div>
         </div>
     );

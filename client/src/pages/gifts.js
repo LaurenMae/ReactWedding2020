@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 
 export default function Gifts() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div className="container">
                 We made a commitment some time ago,<br />
                 That together through life we were destined to go.<br />

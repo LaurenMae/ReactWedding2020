@@ -55,6 +55,15 @@ app.post('/api/test/', async (req, res) => {
     }
 });
 
+app.get('/getGuestList', async (req, res) => {
+    try {
+        const resp = await returnSpreadsheet();
+        res.send(resp);
+    } catch (err) {
+        throw err;
+    }
+});
+
 app.get('*', function (req, res) {
     res.status(200).sendFile(`/`, { root: clientAppDirectory });
 });
@@ -63,6 +72,18 @@ const updateSpreadsheet = async(spreadsheetValues) => {
     const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
     const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
     await googleSheetsHelper.updateAndPrintSheet(jwtClient, weddingSpreadsheetId, spreadsheetValues);
+};
+
+const returnSpreadsheet = async() => {
+    try {
+        const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
+        const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
+        return await googleSheetsHelper.retrieveAndPrintSheet(jwtClient, weddingSpreadsheetId);
+    } catch (err) {
+        console.error(`Error reading spreadsheet: ${err}`);
+        sendEmail('Wedding App Error', `Reading spreadsheet error: ${JSON.stringify(err)}`);
+        throw error;
+    }
 };
 
 const sendEmail = async (subject, text) => {
