@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 import { Button, Form, FormGroup, Label, Input, InputGroupAddon, InputGroup } from 'reactstrap';
 import _ from 'lodash';
 
@@ -70,25 +70,23 @@ export default function RSVP() {
     }, []);
 
     return (
-        <div>
-            <Navbar />
-            <div>
-                <h3>Please RSVP by 4th April 2020</h3>
+        <>
+            <MyNavbar />
+                <h3 style={{fontSize: '3vw'}}>Please RSVP by 4th April 2020</h3>
                     {guestList && _.isUndefined(guest) &&
                         <>
-                            <p>
+                            <p style={{fontSize: '1vw'}}>
                                 Please enter your full name below to find your RSVP
                                 <br/>
-                                
                             </p>
                             <Form onSubmit={searchName}>
                                 <div style={{width: '30vw', display: 'inline-block'}}>
-                                    <FormGroup style={{margin: '1em'}}>
-                                        <InputGroup style={{padding: '0.5em'}}>
+                                    <FormGroup style={{margin: '2vw'}}>
+                                        <InputGroup style={{padding: '1vw'}}>
                                             <InputGroupAddon addonType="prepend">First Name</InputGroupAddon>
                                             <Input type="text" name="firstName" id="firstName" value={values.firstName} onChange={handleInputChange}/>
                                         </InputGroup>
-                                        <InputGroup style={{padding: '0.5em'}}>
+                                        <InputGroup style={{padding: '1vw'}}>
                                             <InputGroupAddon addonType="prepend">Last Name</InputGroupAddon>
                                             <Input type="text" name="lastName" id="lastName" value={values.lastName} onChange={handleInputChange}/>
                                         </InputGroup>
@@ -102,16 +100,16 @@ export default function RSVP() {
                     }
                     {
                         guestList && guest && 
-                        <div style={{width: '50em', margin: '2em', display: 'inline-block'}}>
+                        <div style={{width: '100vw', margin: '2vw', display: 'inline-block'}}>
                             <p>
                                 Please submit one RSVP per guest
                             </p>
                             <Form onSubmit={submitForm}>
-                                <FormGroup style={{display: 'inline-flex', margin: '1em'}}>
+                                <FormGroup style={{display: 'inline-flex', margin: '1vw'}}>
                                     <Label for="name">Guest Name</Label>
                                     <Input type="text" name="name" id="name" value={`${values.firstName} ${values.lastName}`} readOnly={true} />
                                 </FormGroup>
-                                <FormGroup style={{display: 'inline-flex', margin: '1em'}}>
+                                <FormGroup style={{display: 'inline-flex', margin: '1vw'}}>
                                     <FormGroup check>
                                         <Label check>
                                         <Input type="radio" name="attendance" value="attending" checked={values.attendance === "attending"} onChange={handleInputChange} />{' '}
@@ -125,15 +123,15 @@ export default function RSVP() {
                                         </Label>
                                     </FormGroup>
                                 </FormGroup>
-                                <FormGroup style={{display: 'inline-flex', margin: '1em'}}>
+                                <FormGroup style={{display: 'inline-flex', margin: '1vw'}}>
                                     <Label for="email">Email Address</Label>
                                     <Input type="text" name="email" id="email" value={values.email} onChange={handleInputChange} />
                                 </FormGroup>
-                                <FormGroup style={{display: 'grid', margin: '1em'}}>
+                                <FormGroup style={{display: 'grid', margin: '1vw'}}>
                                     <Label for="diet">Dietary Requirements</Label>
                                     <Input type="textarea" rows="5" name="diet" id="diet" value={values.diet} onChange={handleInputChange} />
                                 </FormGroup>
-                                <FormGroup style={{display: 'grid', margin: '1em'}}>
+                                <FormGroup style={{display: 'grid', margin: '1vw'}}>
                                     <Label for="song">Song Request</Label>
                                     <Input type="textarea" rows="5" name="song" id="song" value={values.song} onChange={handleInputChange} />
                                 </FormGroup>                      
@@ -141,7 +139,6 @@ export default function RSVP() {
                             </Form>
                         </div>
                     }
-                </div>
-            </div>
+            </>
     );
 }

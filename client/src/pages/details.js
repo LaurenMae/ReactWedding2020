@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 
 import HotelList from '../contexts/Hotels.json';
 import { Blurb2Context } from '../Context';
@@ -9,7 +9,7 @@ import Blurb2 from '../components/blurb2';
 export default function Details() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div style={{display: 'inline-block'}}>
                 <p>
                     We have chosen a few hotels near the venue for our guests. <br />
