@@ -4,8 +4,8 @@ import { navigate } from '@reach/router';
 export default function Navbar() {
     return (
       <>
-        <h2 className="customfont_Prestige_Signature_Script">Lauren & Jamie</h2>
-        <h3>27th June 2020</h3>
+          <h2 className="customfont_Prestige_Signature_Script" style={{fontSize: '10vw', margin: '4vw'}}>Lauren & Jamie</h2>
+          <h3 style={{fontSize: '5vw', margin: '2vw'}}>27th June 2020</h3>
           <nav className="navbar navbar-expand-lg navbar-light" style={{display: 'inline-block'}}>
             <div style={{display: 'inline-block'}}>
               <a className="navbar-brand"></a>
