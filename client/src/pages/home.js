@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 import DateCountdown from 'react-date-countdown-timer';
 import Hensol from '../images/hensol.jpg';
 
 export default function Home() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div className="countdown" style={{fontSize: '5vw', position: 'relative'}}>
                 <img src={Hensol} width="100%"/>
                 <div className="centered" style={{padding: '2vw'}}>

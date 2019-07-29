@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import MyNavbar from '../components/navbar';
 
 export default function OrderOfService() {
     return (
         <div>
-            <Navbar />
+            <MyNavbar />
             <div className="container">
                 <p>
                     <b>12.45 - 13.15</b><br />

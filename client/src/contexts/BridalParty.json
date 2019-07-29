@@ -1,33 +1,18 @@
 {
     "BridalParty": [
         {
-            "name": "Eleanor Welsh",
-            "text": "Bridesmaid <br /> Sister of the Bride",
-            "image": "eleanor.jpg"
-        },
-        {
-            "name": "Emily Morris",
-            "text": "Bridesmaid <br /> Sister of the Groom",
-            "image": "eleanor.jpg"
-        },
-        {
-            "name": "Kathryn Welsh",
-            "text": "Bridesmaid <br /> Sister of the Bride",
-            "image": "eleanor.jpg"
-        },
-        {
-            "name": "Natalie Pearson",
-            "text": "Bridesmaid <br /> Friend of the Bride",
-            "image": "eleanor.jpg"
-        },
-        {
             "name": "Alex Howells",
             "text": "Groomsman <br /> Friend of the Groom",
-            "image": "eleanor.jpg"
+            "image": "alex.jpg"
         },
         {
             "name": "Callum Welfoot",
             "text": "Groomsman <br /> Friend of the Groom",
+            "image": "callum.jpg"
+        },
+        {
+            "name": "Eleanor Welsh",
+            "text": "Bridesmaid <br /> Sister of the Bride",
             "image": "eleanor.jpg"
         },
         {
@@ -36,9 +21,24 @@
             "image": "eleanor.jpg"
         },
         {
+            "name": "Emily Morris",
+            "text": "Bridesmaid <br /> Sister of the Groom",
+            "image": "emily.jpg"
+        },
+        {
+            "name": "Kathryn Welsh",
+            "text": "Bridesmaid <br /> Sister of the Bride",
+            "image": "kathryn.jpg"
+        },
+        {
             "name": "Geraint Stone",
             "text": "Groomsman <br /> Friend of the Groom",
-            "image": "eleanor.jpg"
+            "image": "geraint.jpg"
+        },
+        {
+            "name": "Natalie Pearson",
+            "text": "Bridesmaid <br /> Friend of the Bride",
+            "image": "natalie.jpg"
         }
     ]
 }
