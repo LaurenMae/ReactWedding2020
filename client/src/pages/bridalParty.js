@@ -1,27 +1,25 @@
 import React from 'react';
 import MyNavbar from '../components/navbar';
-
 import BridalPartyList from '../contexts/BridalParty.json';
-import { BlurbContext } from '../Context';
-
-import Blurb from '../components/blurb';
+import './bridalParty.scss';
 
 export default function BridalParty() {
     return (
         <div>
             <MyNavbar />
-            <div className="side-by-side-wrapper container">
-                <div style={{textAlign: 'center', width: '100%', display: 'table'}}>
-                    {
-                        BridalPartyList.BridalParty.map((partyMember, key) => {
-                            return (
-                                <BlurbContext.Provider value={partyMember} key={key}>
-                                    <Blurb />
-                                </BlurbContext.Provider>
-                            );
-                        })
-                    }
-                </div>
+            <div className="blurb_container">
+                {
+                    BridalPartyList.BridalParty.map(({name, role, relation, image}, key) => (
+                        <div style={{display: 'inline-block', margin: '2vw'}} key={key}>
+                            <img src={require(`../images/${image}`)} alt={name} />
+                            <div>
+                                <h3>{name}</h3>
+                                <h4>{role}</h4>
+                                {relation}
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     );

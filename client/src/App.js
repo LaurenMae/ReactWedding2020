@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
-import './App.css';
+import './App.scss';
 import RSVP from './pages/rsvp';
 import Details from './pages/details';
 import Home from './pages/home';

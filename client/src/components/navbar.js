@@ -4,8 +4,9 @@ import { navigate } from '@reach/router';
 export default function Navbar() {
     return (
       <>
-          <h2 className="customfont_Prestige_Signature_Script" style={{fontSize: '10vw', margin: '4vw'}}>Lauren & Jamie</h2>
-          <h3 style={{fontSize: '5vw', margin: '2vw'}}>27th June 2020</h3>
+          <h1>Lauren & Jamie</h1> 
+          {/* className="customfont_Prestige_Signature_Script" */}
+          <h2>27th June 2020</h2>
           <nav className="navbar navbar-expand-lg navbar-light" style={{display: 'inline-block'}}>
             <div style={{display: 'inline-block'}}>
               <a className="navbar-brand"></a>
@@ -22,10 +23,10 @@ export default function Navbar() {
                     <a className="nav-link" href="/OrderofService">Order of Service</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/Details">Information</a>
+                    <a className="nav-link" href="/Details">Where to Stay</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/BridalParty">Bridal Party</a>
+                    <a className="nav-link" href="/BridalParty">Meet the Bridal Party</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/Gifts">Gift List</a>
@@ -33,17 +34,6 @@ export default function Navbar() {
                   <li className="nav-item">
                     <a className="nav-link" href="/RSVP">RSVP</a>
                   </li>
-                  {/* <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a className="dropdown-item" href="#">Action</a>
-                      <a className="dropdown-item" href="#">Another action</a>
-                      <div className="dropdown-divider"></div>
-                      <a className="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li> */}
                 </ul>
               </div>
             </div>

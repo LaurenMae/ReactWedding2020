@@ -1,0 +1,16 @@
+.rsvp_container {
+    padding: 2vw 5vw 2vw 5vw;
+    border: 1px solid black;
+
+    .input-group-prepend {
+        flex: none;
+    }
+
+    input {
+        font-size: 4vw;
+    }
+
+    input[type=radio]{
+        transform: scale(2) translate(-50%, 100%);
+    }
+}
