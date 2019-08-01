@@ -3,8 +3,8 @@ import { Button, Form, FormGroup, Input, InputGroupAddon, InputGroup } from 'rea
 import _ from 'lodash';
 
 import './rsvp.scss';
-
-const apiUrl = _.get(process.env, 'REACT_APP_API_URL', 'http://localhost:3001');
+const urlDefault = window.location.host.replace('3000', '3001');
+const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
 
 export default function RSVP() {
     const [values, setValues] = useState({
@@ -51,9 +51,7 @@ export default function RSVP() {
     };
 
     const getGuestList = async() => {
-        const url = window.location.host.replace('3000', '3001'); // todo - remove on heroku
-        
-        const resp = await fetch(`http://${url}/getGuestList`, {
+        const resp = await fetch(`${apiUrl}/api/getGuestList`, {
             method: 'get',
             mode: 'cors',
             headers: {'Content-Type': 'application/json'}
