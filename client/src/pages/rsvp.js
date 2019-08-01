@@ -13,7 +13,8 @@ export default function RSVP() {
         email: '',
         attendance: 'attending',
         diet: '',
-        song: ''
+        song: '',
+        phone: ''
     });
 
     // todo display closed after the deadline
@@ -118,6 +119,10 @@ export default function RSVP() {
                                     Not Attending
                                 </InputGroup>
                             </div>
+                            <InputGroup size="lg">
+                                <InputGroupAddon addonType="prepend">Phone Number</InputGroupAddon>
+                                <Input type="text" name="phone" id="phone" value={values.phone} onChange={handleInputChange} />
+                            </InputGroup>
                             <InputGroup size="lg">
                                 <InputGroupAddon addonType="prepend">Email Address</InputGroupAddon>
                                 <Input type="text" name="email" id="email" value={values.email} onChange={handleInputChange} />
