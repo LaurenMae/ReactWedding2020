@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
-import './App.css';
+import './App.scss';
 import RSVP from './pages/rsvp';
 import Details from './pages/details';
 import Home from './pages/home';
@@ -8,11 +8,14 @@ import Gifts from './pages/gifts';
 import OrderOfService from './pages/orderOfService';
 import Menu from './pages/menu';
 import BridalParty from './pages/bridalParty';
+import MyNavbar from './components/navbar';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <MyNavbar />
+        
         <Router>
           <Home path="/" />
           <Details path="/Details" />

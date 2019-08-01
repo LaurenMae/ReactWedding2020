@@ -1,5 +1,44 @@
 .App {
   text-align: center;
+  font-size: 4vw;
+
+  h1 {
+    font-size: 8vw;
+  }
+
+  h2 {
+    font-size: 7vw;
+  }
+
+  h3 {
+    font-size: 6vw;
+  }
+
+  h4 {
+    font-size: 5vw;
+  }
+
+  button {
+    font-size: 4vw;
+  }
+
+  div {
+    flex: auto;
+  }
+
+  .input-group-lg {
+    padding: 3vw;
+
+    .input-group-prepend {
+        .input-group-text {
+        font-size: 4vw;
+      }
+    }
+
+    input {
+      font-size: 4vw;
+    }
+  }
 }
 
 .App-logo {
@@ -45,7 +84,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgb(230, 235, 242, 0.6);
+  background-color: rgba(230, 235, 242, 0.6);
   color: white;
   width: 100%;
   font-weight: 900;

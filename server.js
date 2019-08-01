@@ -55,7 +55,7 @@ app.post('/api/test/', async (req, res) => {
     }
 });
 
-app.get('/getGuestList', async (req, res) => {
+app.get('/api/getGuestList', async (req, res) => {
     try {
         const resp = await returnSpreadsheet();
         res.send(resp);
