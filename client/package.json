@@ -11,8 +11,6 @@
     "react-bootstrap": "^0.32.4",
     "react-date-countdown-timer": "^1.0.3",
     "react-dom": "^16.8.6",
-    "react-native": "^0.60.4",
-    "react-native-web": "^0.11.5",
     "react-scripts": "2.1.1",
     "reactstrap": "^8.0.1"
   },
