@@ -1,11 +1,7 @@
 .detail_container {
     border: 1px solid black;
     display: inline-block;
-}
-
-@media (max-width: 480px) {
-    .detail_container {
-        padding: 2vw 5vw 2vw 5vw;
-        margin: 2vw;
-    }
+    width: 90vw;
+    padding: 2vw 5vw 2vw 5vw;
+    margin: 2vw;
 }

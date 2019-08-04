@@ -7,12 +7,12 @@ export default function BridalParty() {
         <div className="blurb_container">
             {
                 BridalPartyList.BridalParty.map(({name, role, relation, image}, key) => (
-                    <div style={{display: 'inline-block', margin: '2vw'}} key={key}>
+                    <div className="partyMember" key={key}>
                         <img src={require(`../images/${image}`)} alt={name} />
                         <div>
                             <h3>{name}</h3>
                             <h4>{role}</h4>
-                            {relation}
+                            <div>{relation}</div>
                         </div>
                     </div>
                 ))

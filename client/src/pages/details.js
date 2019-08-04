@@ -17,7 +17,7 @@ export default function Details() {
                             <h3>{name}</h3>
                             <h4>{address}</h4>
                             <h4>{postcode}</h4>
-                            {text}
+                            <div>{text}</div>
                             <Button onClick={() => navigate(url)}>Book Online</Button>
                         </div>
                     ))

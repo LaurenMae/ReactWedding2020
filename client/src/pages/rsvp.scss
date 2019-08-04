@@ -4,7 +4,7 @@
     }
 }
 
-@media only screen and (max-width: 480px), (min-width: 768px) and (max-width: 1023px) {
+@media only screen and (max-width: 480px) {
     .rsvp_container {
         padding: 2vw 5vw 2vw 5vw;
     
@@ -13,7 +13,7 @@
         }
     
         input[type=radio]{
-            transform: scale(2) translate(-50%, 100%);
+            transform: scale(1.5) translate(-50%, 20%);
         }
     }
 }
@@ -27,7 +27,21 @@
         }
     
         input[type=radio]{
-            transform: scale(2) translate(-50%, 100%);
+            transform: scale(1.5) translate(-50%, 20%);
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .rsvp_container {
+        padding: 2vw 5vw 2vw 5vw;
+    
+        input {
+            font-size: 4vw;
+        }
+    
+        input[type=radio]{
+            transform: scale(1.5) translate(-50%, 100%);
         }
     }
 }
@@ -41,7 +55,7 @@
         }
     
         input[type=radio]{
-            transform: scale(2) translate(-50%, 100%);
+            transform: scale(1.5) translate(-50%, 100%);
         }
     }
 }
