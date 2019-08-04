@@ -132,25 +132,21 @@
 
 @media only screen and (min-width: 1024px) {
   .App {
-    font-size: 2.5vw;
+    font-size: 1.5vw;
   
     h1 {
-      font-size: 6.5vw;
-    }
-  
-    h2 {
       font-size: 5.5vw;
     }
   
-    h3 {
+    h2 {
       font-size: 4.5vw;
     }
   
-    h4 {
+    h3 {
       font-size: 3.5vw;
     }
   
-    button {
+    h4 {
       font-size: 2.5vw;
     }
 
@@ -164,12 +160,12 @@
     
         .input-group-prepend {
             .input-group-text {
-            font-size: 2.5vw;
+            font-size: 1.5vw;
           }
         }
     
         input {
-          font-size: 2.5vw;
+          font-size: 1.5vw;
         }
       }
     }

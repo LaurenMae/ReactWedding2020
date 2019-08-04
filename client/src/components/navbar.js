@@ -19,7 +19,7 @@ export default function MyNavbar() {
       <div>
         <h1>Lauren & Jamie</h1> 
         {/* className="customfont_Prestige_Signature_Script" */}
-        <h2>27th June 2020</h2>
+        <h3>Saturday 27th June 2020</h3>
         <Navbar light expand="lg">
           <NavbarToggler onClick={() => { setOpen(!isOpen); }} />
           <Collapse isOpen={isOpen} navbar>

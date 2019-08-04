@@ -14,3 +14,10 @@
     height: 50%;
     font-size: 5vw;
 }
+
+@media only screen and (min-width: 1025px) {
+    .centered {
+        font-size: 4vw;
+        height: 25%;
+    }
+}

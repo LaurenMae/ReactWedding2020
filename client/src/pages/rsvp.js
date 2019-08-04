@@ -103,7 +103,7 @@ export default function RSVP() {
                     <Form onSubmit={submitForm}>
                         <FormGroup>
                             <InputGroup size="lg">
-                                <Input style={{textAlign: 'center'}} type="text" name="name" id="name" value={`${values.firstName} ${values.lastName}`} readOnly={true} />
+                                <Input style={{textAlign: 'center'}} type="text" name="name" id="name" value={_.startCase(`${values.firstName} ${values.lastName}`)} readOnly={true} />
                             </InputGroup>
                             <div style={{display: 'flex', padding: '0 3vw 0 3vw'}}>
                                 <InputGroup size="lg">
