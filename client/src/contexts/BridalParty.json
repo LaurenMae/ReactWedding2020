@@ -1,5 +1,5 @@
 {
-    "BridalParty": [
+    "groomsmen": [
         {
             "name": "Alex Howells",
             "role": "Groomsman",
@@ -13,15 +13,23 @@
             "image": "callum.jpg"
         },
         {
-            "name": "Eleanor Welsh",
-            "role": "Bridesmaid",
-            "relation": "Sister of the Bride",
-            "image": "eleanor.jpg"
-        },
-        {
             "name": "Ellis Millard",
             "role": "Groomsman",
             "relation": "Friend of the Groom",
+            "image": "ellis.jpg"
+        },
+        {
+            "name": "Geraint Stone",
+            "role": "Groomsman",
+            "relation": "Friend of the Groom",
+            "image": "geraint.jpg"
+        }
+    ],
+    "bridesmaids": [
+        {
+            "name": "Eleanor Welsh",
+            "role": "Bridesmaid",
+            "relation": "Sister of the Bride",
             "image": "eleanor.jpg"
         },
         {
@@ -35,12 +43,6 @@
             "role": "Bridesmaid",
             "relation": "Sister of the Bride",
             "image": "kathryn.jpg"
-        },
-        {
-            "name": "Geraint Stone",
-            "role": "Groomsman",
-            "relation": "Friend of the Groom",
-            "image": "geraint.jpg"
         },
         {
             "name": "Natalie Pearson",

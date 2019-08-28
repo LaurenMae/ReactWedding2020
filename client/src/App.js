@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router } from '@reach/router';
+import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import RSVP from './pages/rsvp';
 import Details from './pages/details';
@@ -16,15 +16,15 @@ class App extends Component {
       <div className="App">
         <MyNavbar />
         
-        <Router>
-          <Home path="/" />
-          <Details path="/Details" />
-          <RSVP path="/RSVP" />
-          <Gifts path="/Gifts" />
-          <OrderOfService path="/OrderofService" />
-          <Menu path="/Menu" />
-          <BridalParty path="/BridalParty" />
-        </Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/Details" component={Details} />
+          <Route path="/RSVP" component={RSVP} />
+          <Route path="/Gifts" component={Gifts} />
+          <Route path="/OrderofService" component={OrderOfService} />
+          <Route path="/Menu" component={Menu} />
+          <Route path="/BridalParty" component={BridalParty} />
+        </Switch>
       </div>
     );
   }
