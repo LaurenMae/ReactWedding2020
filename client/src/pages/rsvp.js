@@ -12,6 +12,8 @@ import DateCountdown from 'react-date-countdown-timer';
 import _ from 'lodash';
 
 import './rsvp.scss';
+import { rsvpFormEntries } from './rsvpEntries.json';
+
 const urlDefault = window.location.host.replace('3000', '3001');
 const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
 
@@ -124,6 +126,43 @@ export default function RSVP() {
                             </InputGroup>
                         </Col>
                     </Row>
+                    {
+                        rsvpFormEntries.map(({value, onChange, ...entry}, index) => (
+                            <Row style={{textAlign:'center'}} key={index}>
+                                <Col>
+                                    {
+                                        entry.type === 'radio' &&
+                                        <InputGroup size="lg">
+                                            <InputGroupAddon addonType="prepend">
+                                                <Input addon type={entry.type} name={entry.name} value={value} checked={values.attendance === value} onChange={handleInputChange} />
+                                            </InputGroupAddon>
+                                            {entry.label}
+                                        </InputGroup>
+                                    }
+                                    {/* TODO get rid of the eval!! */}
+                                    {
+                                        entry.type !== 'radio' &&
+                                        <InputGroup size="lg">
+                                            <InputGroupAddon addonType="prepend">{entry.label}</InputGroupAddon>
+                                            <Input style={{textAlign: 'center'}} {...entry} value={eval(value)} onChange={eval(onChange)} />
+                                        </InputGroup>
+                                    }
+                                </Col>
+                            </Row>
+                        ))
+                    }
+                    <Row style={{textAlign:'center'}}>
+                        <Col>
+                            <Button onClick={submitForm}>Submit</Button>
+                        </Col>
+                    </Row>
+                    {/* <Row style={{textAlign:'center'}}>
+                        <Col>
+                            <InputGroup size="lg">
+                                <Input style={{textAlign: 'center'}} type="text" name="name" id="name" value={_.startCase(`${values.firstName} ${values.lastName}`)} readOnly={true} />
+                            </InputGroup>
+                        </Col>
+                    </Row>
                     <Row style={{textAlign:'center'}}>
                         <Col xs={12} sm={12} md lg>
                             <InputGroup size="lg">
@@ -175,8 +214,8 @@ export default function RSVP() {
                     <Row style={{textAlign:'center'}}>
                         <Col>
                             <Button onClick={submitForm}>Submit</Button>
-                        </Col>
-                    </Row>
+                        </Col> */}
+                    {/* </Row> */}
                 </Container>                      
             }
         </Container>

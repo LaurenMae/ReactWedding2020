@@ -1,0 +1,48 @@
+{
+    "rsvpFormEntries": [
+        {
+            "addon": true,
+            "type": "radio",
+            "name": "attendance",
+            "value": "attending",
+            "label": "I'll be there"
+        },
+        {
+            "addon": true,
+            "type": "radio",
+            "name": "attendance",
+            "value": "not attending",
+            "label": "I'll be there in spirit"
+        },
+        {
+            "label": "Phone Number",
+            "type": "text",
+            "name": "phone",
+            "value": "values.phone",
+            "onChange": "handleInputChange"
+        },
+        {
+            "label": "Email Address",
+            "type": "text",
+            "name": "email",
+            "value": "values.email",
+            "onChange": "handleInputChange"
+        },
+        {
+            "label": "Dietary Requirements",
+            "type": "textarea",
+            "rows": 5,
+            "name": "diet",
+            "value": "values.diet",
+            "onChange": "handleInputChange"
+        },
+        {
+            "label": "Song Request",
+            "type": "textarea",
+            "rows": 5,
+            "name": "song",
+            "value": "values.song",
+            "onChange": "handleInputChange"
+        }
+    ]
+}
