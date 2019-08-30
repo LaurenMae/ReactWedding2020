@@ -1,9 +1,6 @@
-.blurb_container {
-    text-align: center; 
-    width: 100%;
-    display: table;
-
+.partyMember {
     img {
-        border-radius: 20vw;
+        border-radius: 100vw;
+        transform: scale(0.5);
     }
 }

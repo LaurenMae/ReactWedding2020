@@ -1,0 +1,10 @@
+{
+    "navbarEntries": {
+        "Home": "/",
+        "Order of Service": "/OrderOfService",
+        "Where to Stay": "/Details",
+        "Meet the Bridal Party": "/BridalParty",
+        "Gift List": "/Gifts",
+        "RSVP": "/RSVP"
+    }
+}

@@ -1,33 +1,21 @@
-import React, { Component } from 'react';
-import { Router } from '@reach/router';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.scss';
-import RSVP from './pages/rsvp';
-import Details from './pages/details';
-import Home from './pages/home';
-import Gifts from './pages/gifts';
-import OrderOfService from './pages/orderOfService';
-import Menu from './pages/menu';
-import BridalParty from './pages/bridalParty';
 import MyNavbar from './components/navbar';
+import { routes } from './routes';
 
-class App extends Component {
-  render() {
+export default function App() {
     return (
       <div className="App">
         <MyNavbar />
         
-        <Router>
-          <Home path="/" />
-          <Details path="/Details" />
-          <RSVP path="/RSVP" />
-          <Gifts path="/Gifts" />
-          <OrderOfService path="/OrderofService" />
-          <Menu path="/Menu" />
-          <BridalParty path="/BridalParty" />
-        </Router>
+        <Switch>
+          {
+            routes.map(({ path, component }, key) => (
+              <Route exact path={path} component={component} key={key} />
+            ))
+          }
+        </Switch>
       </div>
     );
-  }
 }
-
-export default App;
