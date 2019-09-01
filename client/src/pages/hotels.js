@@ -3,9 +3,9 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import { navigate } from '@reach/router';
 
 import HotelList from '../contexts/Hotels.json';
-import './details.scss';
+import './hotels.scss';
 
-export default function Details() {
+export default function Hotels() {
     return (
         <Container>
             We have chosen a few hotels near the venue for our guests
