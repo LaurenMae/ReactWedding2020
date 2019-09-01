@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem } from 'reactstrap';
 
-import { navbarEntries } from './navPages.json';
+import navbarEntries from './navPages';
 
 export default function MyNavbar() {
     const [isOpen, setOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function MyNavbar() {
               {
                 Object.keys(navbarEntries).map((key, index) => (
                   <NavItem key={index}>
-                    <Link className="nav-link" to={navbarEntries[key]} onClick={() => { setOpen(!isOpen); }}>
+                    <Link data-id={navbarEntries[key]} className="nav-link" to={`/${navbarEntries[key]}`} onClick={() => { setOpen(!isOpen); }}>
                       {key} <span className="sr-only">(current)</span>
                     </Link>
                   </NavItem>

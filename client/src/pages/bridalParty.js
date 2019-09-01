@@ -21,11 +21,11 @@ export default function BridalParty() {
                     <Row data-id={partyRole}>
                         {
                             BridalPartyList.map(({name, role, relation, image}, key) => {
-                                return role === partyRole ?
+                                return role === partyRole &&
                                 <Col key={key} xs={12} sm md lg className="partyMember">
                                     <h4>{name}</h4>
                                     <p>{relation}</p>
-                                </Col> : null
+                                </Col>
                             })
                         }
                     </Row>
