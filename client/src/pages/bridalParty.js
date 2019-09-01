@@ -1,38 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Col, Row } from 'reactstrap';
 import BridalPartyList from '../contexts/BridalParty.json';
 import './bridalParty.scss';
+import groupBy from 'lodash/groupBy';
+import startCase from 'lodash/startCase';
 
 export default function BridalParty() {
-    return (
-        <Container>
-            <h3>Bridesmaids</h3>
-            <Row>
-                 {/* className="blurb_container" style={{border: "1px solid black"}}> */}
-                {
-                    BridalPartyList.bridesmaids.map(({name, relation, image}, key) => (
-                        <Col key={key} xs={12} sm md lg className="partyMember">
-                            {/* <img src={require(`../images/${image}`)} alt={name} /> */}
-                            <h4>{name}</h4>
-                            <div>{relation}</div>
-                        </Col>
-                    ))
-                }
-            </Row>
+    const [partyByRole, setPartyByRole ] = useState({});
 
-            <h3>Groomsmen</h3>
-            <Row>
-                 {/* className="blurb_container" style={{border: "1px solid black"}}> */}
-                {
-                    BridalPartyList.groomsmen.map(({name, relation, image}, key) => (
-                        <Col key={key} xs={12} sm md lg className="partyMember">
-                            {/* <img src={require(`../images/${image}`)} alt={name} /> */}
-                            <h4>{name}</h4>
-                            <div>{relation}</div>
-                        </Col>
-                    ))
-                }
-            </Row>
+    useEffect(() => {
+        setPartyByRole(groupBy(BridalPartyList, 'role'));
+    }, []);
+
+    return (
+        <Container data-id='bridalParty-page'>
+        {
+            Object.keys(partyByRole).map(partyRole => (
+                <Container key={partyRole}>
+                    <h3>{startCase(partyRole)}</h3>
+                    <Row data-id={partyRole}>
+                        {
+                            BridalPartyList.map(({name, role, relation, image}, key) => {
+                                return role === partyRole ?
+                                <Col key={key} xs={12} sm md lg className="partyMember">
+                                    <h4>{name}</h4>
+                                    <p>{relation}</p>
+                                </Col> : null
+                            })
+                        }
+                    </Row>
+                </Container>
+            ))
+        }
         </Container>
     );
 }
