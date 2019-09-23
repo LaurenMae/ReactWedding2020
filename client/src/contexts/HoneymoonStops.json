@@ -1,0 +1,30 @@
+[
+    {
+        "image": "san-francisco.jpg",
+        "placeName": "San Francisco"
+    },
+    {
+        "image": "yosemite.jpg",
+        "placeName": "Yosemite"
+    },
+    {
+        "image": "death_valley.jpg",
+        "placeName": "Death Valley"
+    },
+    {
+        "image": "las_vegas.jpg",
+        "placeName": "Las Vegas"
+    },
+    {
+        "image": "oahu.jpg",
+        "placeName": "Oahu"
+    },
+    {
+        "image": "kauai.jpg",
+        "placeName": "Kauai"
+    },
+    {
+        "image": "la.jpg",
+        "placeName": "Los Angeles"
+    }
+]
