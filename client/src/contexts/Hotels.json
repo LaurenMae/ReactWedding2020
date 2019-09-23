@@ -1,19 +1,19 @@
-{
-    "Hotels": [
-        {
-            "name": "Vale Resort",
-            "text": "Free shuttle to and from Hensol Castle",
-            "url": "https://www.valeresort.com/",
-            "phone": "01443667800",
-            "address": "Hensol Park",
-            "postcode": "CF72 8JY"
-        },
-        {
-            "name": "Llantrisant Inn",
-            "text": "15 minute taxi ride from Hensol Castle",
-            "address": "Gwaun Elai Magden Park",
-            "postcode": "CF72 8UX",
-            "url": "https://www.premierinn.com/gb/en/hotels/wales/glamorgan/llantrisant/llantrisant.html"
-        }
-    ]
-}
+[
+    {
+        "name": "Vale Resort",
+        "text": "Free shuttle to and from Hensol Castle",
+        "url": "https://www.valeresort.com/",
+        "phone": "01443667800",
+        "address": "Hensol Park",
+        "postcode": "CF72 8JY",
+        "image": "vale_resort.jpeg"
+    },
+    {
+        "name": "Llantrisant Inn",
+        "text": "15 minute taxi ride from Hensol Castle",
+        "address": "Gwaun Elai Magden Park",
+        "postcode": "CF72 8UX",
+        "url": "https://www.premierinn.com/gb/en/hotels/wales/glamorgan/llantrisant/llantrisant.html",
+        "image": "premier inn.jpg"
+    }
+]

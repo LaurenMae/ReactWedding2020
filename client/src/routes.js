@@ -1,5 +1,5 @@
 import RSVP from './pages/rsvp';
-import Details from './pages/details';
+import Hotels from './pages/hotels';
 import Home from './pages/home';
 import Gifts from './pages/gifts';
 import OrderOfService from './pages/orderOfService';
@@ -12,8 +12,12 @@ export const routes = [
       component: Home
     },
     {
-      path: "/Details",
-      component: Details
+      path: "/Home",
+      component: Home
+    },
+    {
+      path: "/Hotels",
+      component: Hotels
     },
     {
       path: "/RSVP",
