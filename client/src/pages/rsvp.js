@@ -8,6 +8,7 @@ import {
     Row,
     Col
 } from 'reactstrap';
+import Thumbnail from '../components/Thumbnail';
 import DateCountdown from 'react-date-countdown-timer';
 import _ from 'lodash';
 
@@ -54,7 +55,7 @@ export default function RSVP() {
     };
 
     const update = async () => {
-        await fetch(`${apiUrl}/api/test`, {
+        await fetch(`${apiUrl}/api/rsvp`, {
             method: 'post',
             mode: 'cors',
             headers: {'Content-Type': 'application/json'},
@@ -89,31 +90,30 @@ export default function RSVP() {
                 <h4>Countdown to RSVP</h4>
                 <DateCountdown dateTo='February 1, 2020 13:30:00 GMT+01:00'
                     mostSignificantFigure="day"
-                    callback={()=>alert('The day is here')} />
+                    callback={()=>alert('Show a different page?')} />
             </Container>
             {guestList && _.isUndefined(guest) &&
-                <Container style={{textAlign:'center'}}>
-                    <h4>Please enter your full name below to find your RSVP</h4>
+                <Thumbnail>
                     <Row style={{textAlign:'center'}}>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
+                        <Col xs={12} sm={12} md={6} lg={6}>
+                            <InputGroup size="md">
                                 <InputGroupAddon addonType="prepend">First Name</InputGroupAddon>
                                 <Input type="text" name="firstName" id="firstName" value={values.firstName} onChange={handleInputChange}/>
                             </InputGroup>
                         </Col>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
+                        <Col xs={12} sm={12} md={6} lg={6}>
+                            <InputGroup size="md">
                                 <InputGroupAddon addonType="prepend">Last Name</InputGroupAddon>
                                 <Input type="text" name="lastName" id="lastName" value={values.lastName} onChange={handleInputChange}/>
                             </InputGroup>
                         </Col>
                     </Row>
-                    <Row style={{textAlign:'center'}}>
+                    <Row style={{textAlign:'center', margin: '1%'}}>
                         <Col>
-                            <Button onClick={searchName}>Search</Button>
+                            <Button onClick={searchName}>RSVP</Button>
                         </Col>
                     </Row>
-                </Container>
+                </Thumbnail>
             }
             {
                 guestList && guest && 
@@ -156,66 +156,6 @@ export default function RSVP() {
                             <Button onClick={submitForm}>Submit</Button>
                         </Col>
                     </Row>
-                    {/* <Row style={{textAlign:'center'}}>
-                        <Col>
-                            <InputGroup size="lg">
-                                <Input style={{textAlign: 'center'}} type="text" name="name" id="name" value={_.startCase(`${values.firstName} ${values.lastName}`)} readOnly={true} />
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center'}}>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">
-                                    <Input addon type="radio" name="attendance" value="attending" checked={values.attendance === "attending"} onChange={handleInputChange} />{' '}
-                                </InputGroupAddon>
-                                I'll be there
-                            </InputGroup>
-                        </Col>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">
-                                    <Input addon type="radio" name="attendance" value="notAttending" checked={values.attendance === "notAttending"} onChange={handleInputChange} />{' '}
-                                </InputGroupAddon>
-                                I'll be there in spirit
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center'}}>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">Phone Number</InputGroupAddon>
-                                <Input type="text" name="phone" id="phone" value={values.phone} onChange={handleInputChange} />
-                            </InputGroup>
-                        </Col>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">Email Address</InputGroupAddon>
-                                <Input type="text" name="email" id="email" value={values.email} onChange={handleInputChange} />
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center'}}>
-                        <Col>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">Dietary Requirements</InputGroupAddon>
-                                <Input type="textarea" rows="5" name="diet" id="diet" value={values.diet} onChange={handleInputChange} />
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center'}}>
-                        <Col>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">Song Request</InputGroupAddon>
-                                <Input type="textarea" rows="5" name="song" id="song" value={values.song} onChange={handleInputChange} />
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center'}}>
-                        <Col>
-                            <Button onClick={submitForm}>Submit</Button>
-                        </Col> */}
-                    {/* </Row> */}
                 </Container>                      
             }
         </Container>

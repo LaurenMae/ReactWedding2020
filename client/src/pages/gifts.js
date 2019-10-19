@@ -9,8 +9,18 @@ export default function Gifts() {
     return (
         <Container>
             <p>
-                If you wished to give a gift, we would request contributions towards our honeymoon. We are
-                really excited about our trip!
+            We know it’s traditional to write a list <br />
+            But in this case there is a slight twist<br />
+            Our home is complete with the usual stuff<br />
+            And the things that we have are good enough<br />
+            Our dream is to honeymoon in a foreign land<br />
+            And walk along the beach hand in hand<br />
+            We hope you don’t think of us as being rude<br />
+            And that our request is not misconstrued<br />
+            But a contribution to our honeymoon pot<br />
+            Would be appreciated such a lot<br />
+            But the most important thing to say<br />
+            Is that you are there to celebrate our day!
                 
                 {/* TODO Reword this */}
             </p>
@@ -19,10 +29,11 @@ export default function Gifts() {
             </h3>
             <Row>
                 {
-                    Destinations.map(({ image, placeName }, key) => (
-                        <Col key={key} xs sm md lg>
+                    Destinations.map(({ image, placeName, details }, key) => (
+                        <Col key={key} xs={12} sm={6} md={3} lg={3}>
                             <ImageThumbnail image={image}>
                                 <h4>{placeName}</h4>
+                                <p>{details}</p>
                             </ImageThumbnail>
                         </Col>
                     ))

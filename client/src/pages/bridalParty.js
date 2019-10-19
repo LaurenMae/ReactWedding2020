@@ -24,7 +24,7 @@ export default function BridalParty() {
                         {
                             BridalPartyList.map(({name, role, relation, image}, key) => {
                                 return role === partyRole &&
-                                <Col key={key} xs sm md lg className="partyMember">
+                                <Col key={key} xs={12} sm={6} md={3} lg={3} className="partyMember">
                                     <ImageThumbnail image={image}>
                                         <h4>{name}</h4>
                                         <p>{relation}</p>

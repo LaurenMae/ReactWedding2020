@@ -1,30 +1,37 @@
 [
     {
         "image": "san-francisco.jpg",
+        "details": "3 nights stay",
         "placeName": "San Francisco"
     },
     {
         "image": "yosemite.jpg",
+        "details": "2 nights stay",
         "placeName": "Yosemite"
     },
     {
         "image": "death_valley.jpg",
+        "details": "1 night stay",
         "placeName": "Death Valley"
     },
     {
         "image": "las_vegas.jpg",
+        "details": "3 nights stay",
         "placeName": "Las Vegas"
     },
     {
         "image": "oahu.jpg",
+        "details": "3 nights stay",
         "placeName": "Oahu"
     },
     {
         "image": "kauai.jpg",
+        "details": "3 nights stay",
         "placeName": "Kauai"
     },
     {
         "image": "la.jpg",
+        "details": "3 nights stay",
         "placeName": "Los Angeles"
     }
 ]

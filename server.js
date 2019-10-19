@@ -28,7 +28,7 @@ app.listen(port, function() {
     console.log(`listening on ${port}`);
 });
 
-app.post('/api/test/', async (req, res) => {
+app.post('/api/rsvp/', async (req, res) => {
     try {
         const spreadsheetValues = [Object.values(req.body)];
         await updateSpreadsheet(spreadsheetValues);
