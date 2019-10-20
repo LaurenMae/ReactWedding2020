@@ -5,6 +5,8 @@ import Gifts from './pages/gifts';
 import OrderOfService from './pages/orderOfService';
 import Menu from './pages/menu';
 import BridalParty from './pages/bridalParty';
+import InviteRsvp from './pages/InviteRsvp';
+import RsvpConfirmation from './pages/rsvpConfirmation';
 
 export const routes = [
     {
@@ -22,6 +24,14 @@ export const routes = [
     {
       path: "/RSVP",
       component: RSVP
+    },
+    {
+      path: "/RSVP/:invitee",
+      component: InviteRsvp
+    },
+    {
+      path: "/RSVP/:invitee/thankyou",
+      component: RsvpConfirmation
     },
     {
       path: "/Gifts",

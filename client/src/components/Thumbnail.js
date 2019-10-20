@@ -3,9 +3,9 @@ import { Container } from 'reactstrap';
 
 import './thumbnail.scss';
 
-export default function Thumbnail({ children }) {
+export default function Thumbnail({ children, ...props }) {
     return (
-        <Container className='thumbnail-container'>
+        <Container className='thumbnail-container' {...props}>
             <div className='text-container'>
                 {children}
             </div>
