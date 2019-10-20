@@ -12,7 +12,6 @@ import Thumbnail from '../components/Thumbnail';
 import DateCountdown from 'react-date-countdown-timer';
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
-import Thumbnail from '../components/Thumbnail';
 
 import './rsvp.scss';
 
