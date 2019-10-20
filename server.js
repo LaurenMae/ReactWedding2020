@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const nconf = require('nconf');
+const Email = require('email-templates');
 
 nconf.argv()
     .env()
@@ -32,15 +33,13 @@ app.post('/api/rsvp/', async (req, res) => {
     try {
         const spreadsheetValues = [Object.values(req.body)];
         await updateSpreadsheet(spreadsheetValues);
+        await sendConfirmationEmail(req.body);
         res.sendStatus(200);
     } catch (spreadsheetError) {
         console.error('Error when updating spreadsheet: ', spreadsheetError);
-        res.sendStatus(500);
+        await sendEmail('Wedding App Error', `Updating spreadsheet error: ${JSON.stringify(error)}`)
 
-        return sendEmail('Wedding App Error', `Updating spreadsheet error: ${JSON.stringify(error)}`)
-            .catch((emailError) => {
-                console.error('Failed sending error email too: ', emailError);
-            }); 
+        res.sendStatus(500);
     }
     
     try {
@@ -68,10 +67,33 @@ app.get('*', function (req, res) {
     res.status(200).sendFile(`/`, { root: clientAppDirectory });
 });
 
+
+const email = new Email({
+  message: {
+      from: '"Wedding App" <lauren.mae.welsh@gmail.com>', 
+  },
+  preview: false,
+  send: true,
+  transport: transporter
+});
+
 const updateSpreadsheet = async(spreadsheetValues) => {
     const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
     const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
     await googleSheetsHelper.updateAndPrintSheet(jwtClient, weddingSpreadsheetId, spreadsheetValues);
+};
+
+const sendConfirmationEmail = async (inviteResponse) => {
+    email.send({
+        template: 'rsvpConfirmation',
+        message: {
+            to: inviteResponse.email
+        },
+        locals: {
+            name: inviteResponse.firstName,
+            attendance: inviteResponse.attendance
+        }
+    }).catch(console.error);
 };
 
 const returnSpreadsheet = async() => {
