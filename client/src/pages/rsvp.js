@@ -9,7 +9,7 @@ import {
     Col
 } from 'reactstrap';
 import Thumbnail from '../components/Thumbnail';
-import DateCountdown from 'react-date-countdown-timer';
+import Countdown from '../components/Countdown';
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
 
@@ -73,12 +73,12 @@ export default function RSVP() {
 
     return (
         <Container className="rsvp_container">
-            <h3>Please RSVP by 1st February 2020</h3>
+            <h4>Please RSVP by 1st February 2020</h4>
             <Container className="countdown">
-                <h4>Countdown to RSVP</h4>
-                <DateCountdown dateTo='February 1, 2020 13:30:00 GMT+01:00'
-                    mostSignificantFigure="day"
-                    callback={()=>alert('Show a different page?')} />
+                <Countdown 
+                    title='Remaining Response Time'
+                    dateTo='February 1, 2020 13:30:00 GMT+01:00'
+                    mostSignificantFigure="day" />
             </Container>
             {
                 guestList && _.isUndefined(guest) &&

@@ -1,18 +1,21 @@
 {
     "rsvpFormEntries": [
         {
-            "addon": true,
             "type": "radio",
-            "name": "attendance",
-            "value": "attending",
-            "label": "I'll be there"
-        },
-        {
-            "addon": true,
-            "type": "radio",
-            "name": "attendance",
-            "value": "not attending",
-            "label": "I'll be there in spirit"
+            "options": [
+                {
+                    "addon": true,
+                    "name": "attendance",
+                    "value": "attending",
+                    "label": "I'll be there"
+                },
+                {
+                    "addon": true,
+                    "name": "attendance",
+                    "value": "not attending",
+                    "label": "I'll be there in spirit"
+                }
+            ]
         },
         {
             "label": "Phone Number",
@@ -31,7 +34,7 @@
         {
             "label": "Dietary Requirements",
             "type": "textarea",
-            "rows": 5,
+            "rows": 2,
             "name": "diet",
             "value": "values.diet",
             "onChange": "handleInputChange"
@@ -39,7 +42,7 @@
         {
             "label": "Song Request",
             "type": "textarea",
-            "rows": 5,
+            "rows": 2,
             "name": "song",
             "value": "values.song",
             "onChange": "handleInputChange"

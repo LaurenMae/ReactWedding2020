@@ -21,11 +21,11 @@ export default function Hotels() {
                                 <Image src={require(`../images/${image}`)} rounded />
                             </div>
                             <div className='text-container'>
-                                <h3 data-id='hotel-name'>{name}</h3>
-                                <h4 data-id='hotel-address'>{address}</h4>
-                                <h4>{postcode}</h4>
+                                <h4 data-id='hotel-name'>{name}</h4>
+                                <p data-id='hotel-address'>{address}</p>
+                                <p>{postcode}</p>
                                 <div data-id='hotel-distance'>{text}</div>
-                                <Button variant="outline-secondary" data-id='hotel-url' onClick={() => window.open(url, '_blank') }>Book Online</Button>
+                                <Button className="btn-secondary" data-id='hotel-url' onClick={() => window.open(url, '_blank') }>Book Online</Button>
                             </div>
                         </Col>
                     ))

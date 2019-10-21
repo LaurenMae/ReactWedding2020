@@ -3,6 +3,9 @@ import React from 'react';
 export default function OrderOfService() {
     return (
         <div>
+            - something about time of arrival
+            - something about parking at the venue
+            - something about drinks the night before?
             <h3>13.15 - 13.30</h3>
             Please take your seats
             <h3>13.30</h3>

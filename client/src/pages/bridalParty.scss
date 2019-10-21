@@ -1,9 +1,10 @@
 .partyMember {
-    p {
+    > p {
         text-align: unset;
     }
 }
 
-.partyRole {
+h4.partyRole {
     text-align: center;
+    font-family: 'RNS_Camelia';
 }

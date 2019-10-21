@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem } from 'reactstrap';
+  NavItem,
+  Container
+} from 'reactstrap';
 
 import navbarEntries from './navPages';
+import './navbar.scss';
 
 export default function MyNavbar() {
     const [isOpen, setOpen] = useState(false);
 
+    const active = (path) => {
+      console.log(window.location.pathname, path);
+      return window.location.pathname.includes(path);
+    }
+
     return (
-      <div>
+      <Container className='navbar-container'>
         <h1>Lauren & Jamie</h1>
-        <h3>Saturday 27th June 2020</h3>
+        {/* <h2>Saturday 27th June 2020</h2> */}
         <Navbar light expand="lg">
           <NavbarToggler onClick={() => { setOpen(!isOpen); }} />
           <Collapse isOpen={isOpen} navbar>
@@ -23,8 +32,14 @@ export default function MyNavbar() {
               {
                 Object.keys(navbarEntries).map((key, index) => (
                   <NavItem key={index}>
-                    <Link data-id={navbarEntries[key]} className="nav-link" to={`/${navbarEntries[key]}`} onClick={() => { setOpen(!isOpen); }}>
-                      {key} <span className="sr-only">(current)</span>
+                    <Link data-id={navbarEntries[key]}
+                      className={classnames({
+                        "nav-link": true,
+                        "active": active(`/${navbarEntries[key]}`)
+                      })}
+                      to={`/${navbarEntries[key]}`}
+                      onClick={() => { setOpen(!isOpen); }}>
+                        {key} <span className="sr-only">(current)</span>
                     </Link>
                   </NavItem>
                 ))
@@ -32,6 +47,6 @@ export default function MyNavbar() {
             </Nav>
           </Collapse>
         </Navbar>
-      </div>
+      </Container>
     );
   }

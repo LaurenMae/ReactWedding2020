@@ -10,8 +10,9 @@ import {
 } from 'reactstrap';
 import _ from 'lodash';
 import Thumbnail from '../components/Thumbnail';
+import Done from '@material-ui/icons/Done';
 
-import './rsvp.scss';
+import './inviteRsvp.scss';
 import { rsvpFormEntries } from './rsvpEntries.json';
 
 const urlDefault = window.location.host.replace('3000', '3001');
@@ -20,6 +21,11 @@ const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
 export default function InviteRsvp({ history }) {
     const [values, setValues] = useState(history.location.state);
     
+    const toggle = (event) => {
+        event.persist();
+        setValues(values => ({...values, [event.target.attributes.name.nodeValue]: event.target.attributes.value.nodeValue}));
+    };
+
     const handleInputChange = (event) => {
         event.persist();
         setValues(values => ({...values, [event.target.name]: event.target.value}));
@@ -45,25 +51,27 @@ export default function InviteRsvp({ history }) {
         <Thumbnail style={{ padding: '10px', width: '80%' }}>
             <Row style={{textAlign:'center', padding: '10px'}}>
                 <Col>
-                    <InputGroup size="lg">
-                        <Input style={{textAlign: 'center'}} type="text" name="name" id="name" value={_.startCase(`${values.firstName} ${values.lastName}`)} readOnly={true} />
-                    </InputGroup>
+                    <div>{_.startCase(`${values.firstName} ${values.lastName}`)}, please complete the form below to RSVP</div>
                 </Col>
             </Row>
             <Row style={{textAlign:'center'}}>
             {
-                rsvpFormEntries.map(({value, onChange, ...entry}, index) => (
+                rsvpFormEntries.map(({onChange, ...entry}, index) => (
                     <>
                         {
                             entry.type === 'radio' &&
-                            <Col key={index} xs={6} sm={6} md={6} lg={6} style={{ padding: '10px' }}>
-                                <InputGroup size="lg">
-                                    <InputGroupAddon addonType="prepend">
-                                        <Input addon type={entry.type} name={entry.name} value={value} checked={values.attendance === value} onChange={handleInputChange} />
-                                    </InputGroupAddon>
-                                    {entry.label}
-                                </InputGroup>
-                            </Col>
+                            <div key={index} style={{ padding: '10px', width: '33.3%', display: 'flex', margin: '0 auto' }}>
+                                {
+                                    entry.options.map(({ name, value, label }) => (
+                                        <div style={{ display: 'flex', margin: '2%' }}>
+                                            <div style={{ border: '1px solid rgba(0,0,0,.5)' }} name={name} value={value} onClick={toggle}>
+                                                <Done  style={{ visibility: values.attendance === value ? 'visible' : 'hidden' }} />
+                                            </div>
+                                            <div style={{ padding: '2px 0 0 4px' }}>{label}</div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         }
                         {/* TODO get rid of the eval!! */}
                         {
@@ -71,7 +79,7 @@ export default function InviteRsvp({ history }) {
                             <Col key={index} xs={12} sm={12} md={12} lg={12} style={{ padding: '10px' }}>
                                 <InputGroup size="lg">
                                     <InputGroupAddon addonType="prepend">{entry.label}</InputGroupAddon>
-                                    <Input style={{textAlign: 'center'}} {...entry} value={eval(value)} onChange={eval(onChange)} />
+                                    <Input style={{textAlign: 'center'}} {...entry} value={eval(entry.value)} onChange={eval(onChange)} />
                                 </InputGroup>
                             </Col>
                         }

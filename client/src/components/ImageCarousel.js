@@ -10,7 +10,7 @@ export default function ImageCarousel({ images }) {
                 images.map(({ image, placeName }) => (
                     <CarouselItem style={{ height: '300px' }}>
                         <Carousel.Caption>
-                            <h3>{placeName}</h3>
+                            <h4>{placeName}</h4>
                         </Carousel.Caption>
                         <img
                             height='300px'

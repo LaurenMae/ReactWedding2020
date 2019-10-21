@@ -1,9 +1,36 @@
+@font-face {
+  font-family: 'Bickman';
+  src: url('./fonts/bickhamscriptpro-regular.otf');
+}
+
+@font-face {
+  font-family: 'RNS_Camelia';
+  src: url('./fonts/rns_camelia.otf');
+}
+
 .App {
   text-align: center;
+  font-family: 'RNS_Camelia';
 
-//   div {
-//     flex: auto;
-//   }
+  h1, h2, h3, h4 {
+    font-family: 'Bickman';
+  }
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  h2 {
+    font-size: 4rem;
+  }
+
+  h3 {
+    font-size: 3rem;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
 
   nav {
     display: inline-block;
@@ -12,166 +39,13 @@
   p {
     text-align: center;
   }
+
+  .input-group-text, .btn-secondary {
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+  }
+
+  .MuiSvgIcon-root {
+    fill: rgba(0, 0, 0, .5);
+  }
 }
-
-// .App-logo {
-//   animation: App-logo-spin infinite 20s linear;
-//   height: 40vmin;
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @font-face {
-//   font-family: "Prestige Signature Script";
-//   src: url('./GreatVibes-Regular.ttf') format("truetype");
-// }
-
-// .customfont_Prestige_Signature_Script {
-//   font-family: "Prestige Signature Script";
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
-
-// @media only screen and (max-width: 480px), (min-width: 768px) and (max-width: 1023px) {
-//   .App {
-//     font-size: 4vw;
-  
-//     h1 {
-//       font-size: 8vw;
-//     }
-  
-//     h2 {
-//       font-size: 7vw;
-//     }
-  
-//     h3 {
-//       font-size: 6vw;
-//     }
-  
-//     h4 {
-//       font-size: 5vw;
-//     }
-  
-//     button {
-//       font-size: 4vw;
-//     }
-  
-//     .input-group-lg {
-//       padding: 3vw;
-  
-//       .input-group-prepend {
-//           .input-group-text {
-//           font-size: 4vw;
-//         }
-//       }
-  
-//       input {
-//         font-size: 4vw;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (min-width: 481px) and (max-width: 767px) {
-//   .App {
-//     font-size: 2vw;
-  
-//     h1 {
-//       font-size: 6vw;
-//     }
-  
-//     h2 {
-//       font-size: 5vw;
-//     }
-  
-//     h3 {
-//       font-size: 4vw;
-//     }
-  
-//     h4 {
-//       font-size: 3vw;
-//     }
-  
-//     button {
-//       font-size: 2vw;
-//     }
-  
-//     .form-group {
-//       .input-group-lg {
-//         padding: 1vw 2vw 1vw 2vw;
-    
-//         .input-group-prepend {
-//             .input-group-text {
-//             font-size: 2vw;
-//           }
-//         }
-    
-//         input {
-//           font-size: 2vw;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (min-width: 1024px) {
-//   .App {
-//     font-size: 1.5vw;
-  
-//     h1 {
-//       font-size: 5.5vw;
-//     }
-  
-//     h2 {
-//       font-size: 4.5vw;
-//     }
-  
-//     h3 {
-//       font-size: 3.5vw;
-//     }
-  
-//     h4 {
-//       font-size: 2.5vw;
-//     }
-
-//     nav {
-//       display: inline-block;
-//     }
-  
-//     .form-group {
-//       .input-group-lg {
-//         padding: 1vw 2vw 1vw 2vw;
-    
-//         .input-group-prepend {
-//             .input-group-text {
-//             font-size: 1.5vw;
-//           }
-//         }
-    
-//         input {
-//           font-size: 1.5vw;
-//         }
-//       }
-//     }
-//   }
-// }

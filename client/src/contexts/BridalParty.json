@@ -1,49 +1,49 @@
 [
     {
         "name": "Alex Howells",
-        "role": "groomsmen",
+        "role": "Groomsman",
         "relation": "Friend of the Groom",
         "image": "alex.jpg"
     },
     {
         "name": "Callum Welfoot",
-        "role": "groomsmen",
+        "role": "Groomsman",
         "relation": "Friend of the Groom",
         "image": "callum.jpg"
     },
     {
-        "name": "Ellis Millard",
-        "role": "groomsmen",
-        "relation": "Friend of the Groom",
-        "image": "ellis.jpg"
-    },
-    {
-        "name": "Geraint Stone",
-        "role": "groomsmen",
-        "relation": "Friend of the Groom",
-        "image": "geraint.jpg"
-    },
-    {
         "name": "Eleanor Welsh",
-        "role": "bridesmaids",
+        "role": "Bridesmaid",
         "relation": "Sister of the Bride",
         "image": "eleanor.jpg"
     },
     {
+        "name": "Ellis Millard",
+        "role": "Groomsman",
+        "relation": "Friend of the Groom",
+        "image": "ellis.jpg"
+    },
+    {
         "name": "Emily Morris",
-        "role": "bridesmaids",
+        "role": "Bridesmaid",
         "relation": "Sister of the Groom",
         "image": "emily.jpg"
     },
     {
+        "name": "Geraint Stone",
+        "role": "Groomsman",
+        "relation": "Friend of the Groom",
+        "image": "geraint.jpg"
+    },
+    {
         "name": "Kathryn Welsh",
-        "role": "bridesmaids",
+        "role": "Bridesmaid",
         "relation": "Sister of the Bride",
         "image": "kathryn.jpg"
     },
     {
         "name": "Natalie Pearson",
-        "role": "bridesmaids",
+        "role": "Bridesmaid",
         "relation": "Friend of the Bride",
         "image": "natalie.jpg"
     }

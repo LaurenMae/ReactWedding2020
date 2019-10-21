@@ -1,0 +1,17 @@
+.navbar-container {
+    text-align: center;
+
+    > h1 {
+        font-size: 5rem;
+    }
+
+    > h2 {
+        font-size: 4rem;
+    }
+
+    .nav-link.active {
+        text-decoration: underline;
+        text-decoration-color: rgba(0,0,0,.5);
+        color: rgba(0,0,0,.5) !important;
+    }
+}

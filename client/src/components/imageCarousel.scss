@@ -1,3 +1,10 @@
 .slide, .carousel {
     width: 400px;
 }
+
+.carousel-caption {
+    > h4 {
+        font-family: 'RNS_Camelia';
+        font-weight: bold;
+    }
+}

@@ -1,5 +1,9 @@
 .countdown {
     text-align: center;
+
+    > h3 {
+        font-size: 3rem;
+    }
 }
 
 .odometer-block > span {
