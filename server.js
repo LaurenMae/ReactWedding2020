@@ -54,6 +54,27 @@ app.post('/api/rsvp/', async (req, res) => {
     }
 });
 
+const returnSheet = async(name, range) => {
+    try {
+        const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
+        const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
+        return await googleSheetsHelper.retrieveSheet(jwtClient, weddingSpreadsheetId, name, range);
+    } catch (err) {
+        console.error(`Error reading spreadsheet: ${err}`);
+        sendEmail('Wedding App Error', `Reading spreadsheet error: ${JSON.stringify(err)}`);
+        throw error;
+    }
+};
+
+app.post('/api/getRsvpList', async (req, res) => {
+    try {
+        const resp = await returnSheet(req.body.sheetName, req.body.sheetRange);
+        res.send(resp);
+    } catch (err) {
+        throw err;
+    }
+});
+
 app.get('/api/getGuestList', async (req, res) => {
     try {
         const resp = await returnSpreadsheet();

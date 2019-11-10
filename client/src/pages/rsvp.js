@@ -33,6 +33,7 @@ export default function RSVP() {
     // todo display closed after the deadline
 
     const [guestList, setGuestList] = useState([]);
+    const [rsvpList, setRsvpList] = useState([]);
     const [guest, setGuest] = useState();
 
     const handleInputChange = (event) => {
@@ -43,8 +44,11 @@ export default function RSVP() {
     const searchName = (event) => {
         event.preventDefault();
         const guest = _.find(guestList, { firstName: values.firstName.toLowerCase().trim(), lastName: values.lastName.toLowerCase().trim()});
+        const existingRsvp = _.find(rsvpList, { firstName: values.firstName.toLowerCase().trim(), lastName: values.lastName.toLowerCase().trim()});
         if (_.isUndefined(guest)) {
             alert('No guest matching specific name found, please contact couple');
+        } else if (existingRsvp) {
+            alert('RSVP already found'); // TODO modal
         } else {
             setGuest(guest);
             history.push(`/RSVP/${guest.firstName}${guest.lastName}`, values);
@@ -61,15 +65,35 @@ export default function RSVP() {
         return await resp.json();
     };
 
-    useEffect(() => {
-        try {
-            getGuestList().then(guests => {
-                setGuestList(guests);
-            }).catch();
-        } catch (e) {
+    const getRsvpList = async() => {
+        const resp = await fetch(`${apiUrl}/api/getRsvpList`, {
+            method: 'post',
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                sheetName: 'test',
+                sheetRange: 'A2:G250'
+            })
+        });
 
-        }
+        return await resp.json();
+    };
+
+    useEffect(() => {
+        getGuestList().then(guests => {
+            setGuestList(guests);
+        }).catch();
     }, []);
+
+    useEffect(() => {
+        getRsvpList().then(rsvps => {
+            setRsvpList(rsvps);
+        }).catch();
+    }, []);
+
+    useEffect(() => {
+        console.log(rsvpList);
+    }, [rsvpList]);
 
     return (
         <Container className="rsvp_container">

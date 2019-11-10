@@ -14,6 +14,27 @@ const createAndConnectJwtClient = async () => {
   return jwtClient;
 }
 
+const retrieveSheet = async (jwtClient, sheetId, name, range) => {
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      auth: jwtClient,
+      spreadsheetId: sheetId,
+      range: `${name}!${range}`
+    });
+
+    return response.data.values.map((row) => {
+      return {
+        firstName: row[0] ? row[0].toLowerCase() : '',
+        lastName: row[1] ? row[1].toLowerCase() : ''
+      };
+    });
+  }
+  catch (error) {
+    console.error('Failed retrieving sheet data', error);
+    process.exit(1);
+  }
+};
+
 const retrieveAndPrintSheet = async (jwtClient, sheetId) => {
   try {
     const response = await sheets.spreadsheets.values.get({
@@ -50,5 +71,6 @@ const updateAndPrintSheet = async (jwtClient, spreadsheetId, values) => {
 module.exports = {
   createAndConnectJwtClient,
   retrieveAndPrintSheet,
-  updateAndPrintSheet
+  updateAndPrintSheet,
+  retrieveSheet
 }
