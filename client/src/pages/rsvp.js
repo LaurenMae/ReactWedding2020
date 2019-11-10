@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { 
-    Button,
-    Input,
-    InputGroupAddon,
-    InputGroup,
-    Container,
-    Row,
-    Col
-} from 'reactstrap';
-import Thumbnail from '../components/Thumbnail';
+import { Container } from 'reactstrap';
 import Countdown from '../components/Countdown';
+import DeadlinePassed from './deadlinePassed';
+import RsvpForm from './rsvpForm';
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
 
@@ -30,16 +23,10 @@ export default function RSVP() {
         phone: ''
     });
 
-    // todo display closed after the deadline
-
     const [guestList, setGuestList] = useState([]);
     const [rsvpList, setRsvpList] = useState([]);
     const [guest, setGuest] = useState();
-
-    const handleInputChange = (event) => {
-        event.persist();
-        setValues(values => ({...values, [event.target.name]: event.target.value}));
-    };
+    const [deadlinePassed, setDeadlinePassed] = useState(false);
 
     const searchName = (event) => {
         event.preventDefault();
@@ -91,44 +78,32 @@ export default function RSVP() {
         }).catch();
     }, []);
 
-    useEffect(() => {
-        console.log(rsvpList);
-    }, [rsvpList]);
+    const countdownReached = () => {
+        setDeadlinePassed(true);
+    };
 
     return (
         <Container className="rsvp_container">
-            <h4>Please RSVP by 1st February 2020</h4>
-            <Container className="countdown">
-                <Countdown 
-                    title='Remaining Response Time'
-                    dateTo='February 1, 2020 13:30:00 GMT+01:00'
-                    mostSignificantFigure="day" />
-            </Container>
             {
-                guestList && _.isUndefined(guest) &&
-                <Thumbnail style={{ padding: '10px', width: '80%' }}>
-                    <Row style={{textAlign:'center', padding: '10px'}}>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">First Name</InputGroupAddon>
-                                <Input type="text" name="firstName" id="firstName" value={values.firstName} onChange={handleInputChange}/>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center', padding: '10px'}}>
-                        <Col xs={12} sm={12} md lg>
-                            <InputGroup size="lg">
-                                <InputGroupAddon addonType="prepend">Last Name</InputGroupAddon>
-                                <Input type="text" name="lastName" id="lastName" value={values.lastName} onChange={handleInputChange}/>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row style={{textAlign:'center', padding: '10px'}}>
-                        <Col>
-                            <Button onClick={searchName}>RSVP</Button>
-                        </Col>
-                    </Row>
-                </Thumbnail>
+                !deadlinePassed &&
+                <>
+                    <h4>Please RSVP by 1st February 2020</h4>
+                    <Container className="countdown">
+                        <Countdown 
+                            title='Remaining Response Time'
+                            dateTo='February 1, 2020 23:59:59 GMT+01:00'
+                            mostSignificantFigure="day"
+                            callback={() => countdownReached()} />
+                    </Container>
+                    {
+                        guestList && _.isUndefined(guest) &&
+                        <RsvpForm submit={searchName} values={values} setValues={setValues} />
+                    }
+
+                </>
+            }
+            {
+                deadlinePassed && <DeadlinePassed />
             }
         </Container>
     );

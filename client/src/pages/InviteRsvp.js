@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { 
     Button,
     Input,
-    InputGroupAddon,
-    InputGroup,
-    Container,
     FormGroup,
     Label,
     FormFeedback,
@@ -17,7 +14,6 @@ import Done from '@material-ui/icons/Done';
 
 import './inviteRsvp.scss';
 import rsvpFormEntries from './rsvpEntries.json';
-import classnames from 'classnames';
 
 const urlDefault = window.location.host.replace('3000', '3001');
 const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
@@ -38,6 +34,7 @@ export default function InviteRsvp({ history }) {
         setValues(values => ({...values, [event.target.attributes.name.nodeValue]: event.target.attributes.value.nodeValue}));
     };
 
+    // eslint-disable-next-line no-unused-vars
     const handleInputChange = (event) => {
         event.persist();
         setValues(values => ({...values, [event.target.name]: event.target.value}));
@@ -73,39 +70,36 @@ export default function InviteRsvp({ history }) {
             </Row>
             <Row className="justify-content-md-center">
             {
-                radioValues && radioValues.map(({onChange, ...entry}) => (
-                    <>
-                        {
-                            entry.options.map(({ name, value, label }, index) => (
-                                <Col xs={12} sm={6} md={4} lg={3}>
-                                    <div style={{ display: 'inline-flex' }}>
-                                        <div style={{ border: '1px solid rgba(0,0,0,.5)', width: '30px', height: '30px', margin: '0 10px' }}
-                                            name={name}
-                                            value={value}
-                                            onClick={toggle}
-                                        >
-                                            <Done style={{ visibility: values.attendance === value ? 'visible' : 'hidden' }} />
-                                        </div>
-                                        <div style={{ lineHeight: 2 }}>{label}</div>
-                                    </div>
-                                </Col>
-                            ))
-                        }
-                    </>
-                ))
+                radioValues && radioValues.map(({onChange, ...entry}) => {
+                    return entry.options.map(({ name, value, label }, index) => (
+                        <Col key={index} xs={12} sm={6} md={4} lg={3}>
+                            <div style={{ display: 'inline-flex' }}>
+                                <div style={{ border: '1px solid rgba(0,0,0,.5)', width: '30px', height: '30px', margin: '0 10px' }}
+                                    name={name}
+                                    value={value}
+                                    onClick={toggle}
+                                >
+                                    <Done style={{ visibility: values.attendance === value ? 'visible' : 'hidden' }} />
+                                </div>
+                                <div style={{ lineHeight: 2 }}>{label}</div>
+                            </div>
+                        </Col>
+                    ))
+                })
             }
             </Row>
             {
-                noneRadioValues && noneRadioValues.map(({onChange, ...entry}) => (
-                    <Row>
+                noneRadioValues && noneRadioValues.map(({onChange, validate, value, label, ...props}, index) => (
+                    <Row key={index}>
                         <Col>
                             <FormGroup style={{ textAlign: 'left' }} row>
                                 <Col xs={12} sm={12} md={12} lg={2}>
-                                    <Label for="exampleEmail">{entry.label}</Label>
+                                    <Label for="exampleEmail">{label}</Label>
                                 </Col>
                                 <Col xs={12} sm={12} md={12} lg={10}>
-                                    <Input invalid={error && entry.validate} {...entry} value={eval(entry.value)} onChange={eval(onChange)} />
-                                    <FormFeedback invalid>{error}</FormFeedback>
+                                    {/* eslint-disable-next-line no-eval */}
+                                    <Input invalid={error && validate} {...props} value={eval(value)} onChange={eval(onChange)} />
+                                    <FormFeedback invalid={error}>{error}</FormFeedback>
                                 </Col>
                             </FormGroup>
                         </Col>

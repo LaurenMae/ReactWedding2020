@@ -17,18 +17,12 @@ export default function MyNavbar() {
     const [isOpen, setOpen] = useState(false);
 
     const active = (path) => {
-      console.log(window.location.pathname, path);
       return window.location.pathname.includes(path);
     }
 
     return (
       <Container className='navbar-container'>
-        {/* <div style={{ position: 'relative' }}> */}
-          <h1>Lauren & Jamie</h1>
-          {/* <p style={{ position: 'absolute', top: '70%', right: '30%', fontSize: '12px' }}>Saturday 27th June 2020</p> */}
-        {/* </div> */}
-        
-        {/* <h2>Saturday 27th June 2020</h2> */}
+        <h1>Lauren & Jamie</h1>
         <Navbar light expand="lg">
           <NavbarToggler onClick={() => { setOpen(!isOpen); }} />
           <Collapse isOpen={isOpen} navbar>

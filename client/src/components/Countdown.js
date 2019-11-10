@@ -4,12 +4,12 @@ import { Container } from 'reactstrap';
 
 import './countdown.scss';
 
-export default function Countdown({ title, dateTo, mostSignificantFigure }) {
+export default function Countdown({ title, dateTo, mostSignificantFigure, callback }) {
     return (
         <Container className="countdown">
             <h3>{title}</h3>
             <DateCountdown dateTo={dateTo}
-                mostSignificantFigure={mostSignificantFigure} />
+                mostSignificantFigure={mostSignificantFigure} callback={callback} />
         </Container>
     )
 }

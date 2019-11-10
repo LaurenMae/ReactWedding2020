@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Col, Row } from 'reactstrap';
-import ImageThumbnail from '../components/ImageThumbnail';
 import Destinations from '../contexts/HoneymoonStops.json';
 
 import './gifts.scss';

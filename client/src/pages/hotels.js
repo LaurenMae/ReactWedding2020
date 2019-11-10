@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Button } from 'react-bootstrap';
-import { navigate } from '@reach/router';
 
 import HotelList from '../contexts/Hotels.json';
 import { Image } from 'react-bootstrap';
