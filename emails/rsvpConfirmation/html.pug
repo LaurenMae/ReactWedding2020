@@ -10,4 +10,14 @@ else
     p We have received your RSVP, we are sorry you aren't able to share our day
     p If you wish to alter your RSVP or need any other information please contact us.
 
+if (hotel)
+    p we have a reservation for you
+    p #{hotel.dates}
+    p #{hotel.roomType}
+    p #{hotel.name}
+    p #{hotel.cost}
+    p #{hotel.paid}
+    p #{hotel.outstanding}
+    p #{hotel.due}
+
 // TODO hotel information?

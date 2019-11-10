@@ -31,7 +31,7 @@ app.listen(port, function() {
 
 app.post('/api/rsvp/', async (req, res) => {
     try {
-        const spreadsheetValues = [Object.values(req.body)];
+        const spreadsheetValues = [Object.values(req.body.values)];
         await updateSpreadsheet(spreadsheetValues);
         await sendConfirmationEmail(req.body);
         res.sendStatus(200);
@@ -69,7 +69,41 @@ const returnSheet = async(name, range) => {
 app.post('/api/getRsvpList', async (req, res) => {
     try {
         const resp = await returnSheet(req.body.sheetName, req.body.sheetRange);
-        res.send(resp);
+        res.send(resp.map((row) => {
+            return {
+                firstName: row[0] ? row[0].toLowerCase() : '',
+                lastName: row[1] ? row[1].toLowerCase() : ''
+            };
+        }));
+    } catch (err) {
+        throw err;
+    }
+});
+
+app.post('/api/hotelBooking/:firstName/:lastName', async (req, res) => {
+    try {
+        const resp = await returnSheet(req.body.sheetName, req.body.sheetRange);
+        const bookings = resp.map(booking => {
+            return {
+                dates: booking[0],
+                roomType: booking[1],
+                name: booking[2],
+                cost: booking[3],
+                paid: booking[4],
+                outstanding: booking[5],
+                due: booking[6]
+            }
+        });
+
+        const hotelBooking = bookings.find(guest => {
+            return guest.name.trim().toLowerCase() === `${req.params.firstName.trim().toLowerCase()} ${req.params.lastName.trim().toLowerCase()}`;
+        });
+
+        if (hotelBooking) {
+            res.send(hotelBooking);
+        } else {
+            res.send(null);
+        }
     } catch (err) {
         throw err;
     }
@@ -105,14 +139,16 @@ const updateSpreadsheet = async(spreadsheetValues) => {
 };
 
 const sendConfirmationEmail = async (inviteResponse) => {
+    console.log(inviteResponse);
     email.send({
         template: 'rsvpConfirmation',
         message: {
-            to: inviteResponse.email
+            to: inviteResponse.values.email
         },
         locals: {
-            name: inviteResponse.firstName,
-            attendance: inviteResponse.attendance
+            name: inviteResponse.values.firstName,
+            attendance: inviteResponse.values.attendance,
+            hotel: inviteResponse.hotels
         }
     }).catch(console.error);
 };

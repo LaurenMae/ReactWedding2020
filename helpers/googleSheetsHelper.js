@@ -22,12 +22,13 @@ const retrieveSheet = async (jwtClient, sheetId, name, range) => {
       range: `${name}!${range}`
     });
 
-    return response.data.values.map((row) => {
-      return {
-        firstName: row[0] ? row[0].toLowerCase() : '',
-        lastName: row[1] ? row[1].toLowerCase() : ''
-      };
-    });
+    return response.data.values;
+    // .map((row) => {
+    //   return {
+    //     firstName: row[0] ? row[0].toLowerCase() : '',
+    //     lastName: row[1] ? row[1].toLowerCase() : ''
+    //   };
+    // });
   }
   catch (error) {
     console.error('Failed retrieving sheet data', error);

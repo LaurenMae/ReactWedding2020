@@ -51,14 +51,29 @@ export default function InviteRsvp({ history }) {
     };
 
     const update = async () => {
+        const guestRooms = await fetch(`${apiUrl}/api/hotelBooking/${values.firstName}/${values.lastName}`, {
+            method: 'post',
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                sheetName: 'Guest Rooms',
+                sheetRange: 'A2:G25'
+            })
+        });
+
+        const roomDetails = await guestRooms.json();
+
         await fetch(`${apiUrl}/api/rsvp`, {
             method: 'post',
             mode: 'cors',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(values)
+            body: JSON.stringify({ values: {...values}, hotels: {...roomDetails} })
         });
 
-        history.push(`/RSVP/${values.firstName}${values.lastName}/thankyou`, { email: values.email, attendance: values.attendance });
+        history.push(`/RSVP/${values.firstName}${values.lastName}/thankyou`, {
+            email: values.email,
+            attendance: values.attendance
+        });
     };
 
     return (
