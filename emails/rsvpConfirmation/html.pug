@@ -1,5 +1,13 @@
-- const styles={ "color": "red" }
-p(style=styles) Hi #{name},
-p Your RSVP for the wedding of Lauren and Jamie has been received.
-p You are #{attendance} the wedding.
-p If you wish to alter your RSVP please contact the couple.
+div(style={ border: '5px double rgba(240, 0, 0, .5)', 'border-radius': '100%', margin: '1%', display: 'inline-flex', padding: '20px' })
+    h2(style={ color: 'rgba(240, 0, 0, .5)'}) Thank you
+
+p Hi #{name},
+
+if attendance === 'attending'
+    p We have received your RSVP, we can't wait to share our day with you!
+    p If you wish to alter your RSVP or need any other information please contact us.
+else
+    p We have received your RSVP, we are sorry you aren't able to share our day
+    p If you wish to alter your RSVP or need any other information please contact us.
+
+// TODO hotel information?

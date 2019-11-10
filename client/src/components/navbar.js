@@ -23,7 +23,11 @@ export default function MyNavbar() {
 
     return (
       <Container className='navbar-container'>
-        <h1>Lauren & Jamie</h1>
+        {/* <div style={{ position: 'relative' }}> */}
+          <h1>Lauren & Jamie</h1>
+          {/* <p style={{ position: 'absolute', top: '70%', right: '30%', fontSize: '12px' }}>Saturday 27th June 2020</p> */}
+        {/* </div> */}
+        
         {/* <h2>Saturday 27th June 2020</h2> */}
         <Navbar light expand="lg">
           <NavbarToggler onClick={() => { setOpen(!isOpen); }} />

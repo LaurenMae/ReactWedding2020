@@ -9,3 +9,16 @@ div.input-group, div.input-group-lg {
         }
     }
 }
+
+.error {
+    border: 5px solid rgba(240, 0, 0, .5);
+    border-radius: 10px;
+}
+
+.error-message {
+    background-color: rgba(240, 0, 0, 0.5);
+    border-radius: 10px;
+    display: inline-flex;
+    padding: 5px;
+    font-weight: bold;
+}
