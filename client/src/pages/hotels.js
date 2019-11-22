@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import HotelList from '../contexts/Hotels.json';
 import { Image } from 'react-bootstrap';
 import styled from 'styled-components';
-import './hotels.scss';
 
 const Page = styled.div`
     text-align: center;
@@ -21,6 +20,16 @@ const HotelContainer = styled.div`
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     margin: 2%;
     padding: unset !important;
+
+    h1, h2, h3, h4, h5 {
+        font-family: 'RNS_Camelia';
+    }
+
+    img {
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        width: 100%;
+        vertical-align: middle;
+    }
 `;
 
 const TextContent = styled.div`
@@ -40,7 +49,7 @@ export default function Hotels() {
                             <HotelContainer className="hotel_container">
                                 <Image src={require(`../images/${image}`)} rounded />
                                 <TextContent>
-                                    <h4 data-id='hotel-name'>{name}</h4>
+                                    <h5 data-id='hotel-name'>{name}</h5>
                                     <p data-id='hotel-address'>{address}</p>
                                     <p>{postcode}</p>
                                     <div data-id='hotel-distance'>{text}</div>

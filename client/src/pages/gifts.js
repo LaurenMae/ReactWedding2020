@@ -12,6 +12,11 @@ const Page = styled.div`
 
 const Poem = styled.div`
     text-align: center;
+
+    span {
+        text-align: center;
+        font-size: 3rem;
+    }
 `;
 
 export default function Gifts() {
@@ -35,7 +40,7 @@ export default function Gifts() {
                         Would be appreciated such a lot, <br />
                         But the most important thing to say, <br />
                         Is that you are there to celebrate our day! <br />
-                        <span className='fancy-font' style={{ textAlign: 'center', fontSize: '3rem' }}>Lauren & Jamie</span>
+                        <span className='fancy-font'>Lauren & Jamie</span>
                     </Poem> 
                 </Col>
             </Row> 
