@@ -14,6 +14,13 @@ import Done from '@material-ui/icons/Done';
 
 import './inviteRsvp.scss';
 import rsvpFormEntries from './rsvpEntries.json';
+import styled from 'styled-components';
+
+const Page = styled.div`
+    text-align: center;
+    margin: 0 10%;
+    width: 80%;
+`;
 
 const urlDefault = window.location.host.replace('3000', '3001');
 const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
@@ -37,6 +44,7 @@ export default function InviteRsvp({ history }) {
     // eslint-disable-next-line no-unused-vars
     const handleInputChange = (event) => {
         event.persist();
+        setError(null);
         setValues(values => ({...values, [event.target.name]: event.target.value}));
     };
 
@@ -77,55 +85,57 @@ export default function InviteRsvp({ history }) {
     };
 
     return (
-        <Thumbnail style={{ padding: '10px', width: '80%' }}>
-            <Row style={{textAlign:'center', padding: '10px'}}>
-                <Col>
-                    <div>{_.startCase(`${values.firstName} ${values.lastName}`)}, please complete the form below to RSVP</div>
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center">
-            {
-                radioValues && radioValues.map(({onChange, ...entry}) => {
-                    return entry.options.map(({ name, value, label }, index) => (
-                        <Col key={index} xs={12} sm={6} md={4} lg={3}>
-                            <div style={{ display: 'inline-flex' }}>
-                                <div style={{ border: '1px solid rgba(0,0,0,.5)', width: '30px', height: '30px', margin: '0 10px' }}
-                                    name={name}
-                                    value={value}
-                                    onClick={toggle}
-                                >
-                                    <Done style={{ visibility: values.attendance === value ? 'visible' : 'hidden' }} />
+        <Page>
+            <Thumbnail>
+                <Row style={{textAlign:'center', padding: '10px'}}>
+                    <Col>
+                        <div>{_.startCase(`${values.firstName} ${values.lastName}`)}, please complete the form below to RSVP</div>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center">
+                {
+                    radioValues && radioValues.map(({onChange, ...entry}) => {
+                        return entry.options.map(({ name, value, label }, index) => (
+                            <Col key={index} xs={12} sm={6} md={4} lg={3}>
+                                <div style={{ display: 'inline-flex' }}>
+                                    <div style={{ border: '1px solid rgba(0,0,0,.5)', width: '30px', height: '30px', margin: '0 10px' }}
+                                        name={name}
+                                        value={value}
+                                        onClick={toggle}
+                                    >
+                                        <Done style={{ visibility: values.attendance === value ? 'visible' : 'hidden' }} />
+                                    </div>
+                                    <div style={{ lineHeight: 2 }}>{label}</div>
                                 </div>
-                                <div style={{ lineHeight: 2 }}>{label}</div>
-                            </div>
-                        </Col>
+                            </Col>
+                        ))
+                    })
+                }
+                </Row>
+                {
+                    noneRadioValues && noneRadioValues.map(({onChange, validate, value, label, ...props}, index) => (
+                        <Row key={index}>
+                            <Col>
+                                <FormGroup style={{ textAlign: 'left' }} row>
+                                    <Col xs={12} sm={12} md={12} lg={2}>
+                                        <Label for="exampleEmail">{label}</Label>
+                                    </Col>
+                                    <Col xs={12} sm={12} md={12} lg={10}>
+                                        {/* eslint-disable-next-line no-eval */}
+                                        <Input invalid={error && validate} {...props} value={eval(value)} onChange={eval(onChange)} />
+                                        <FormFeedback invalid={error}>{error}</FormFeedback>
+                                    </Col>
+                                </FormGroup>
+                            </Col>
+                        </Row>
                     ))
-                })
-            }
-            </Row>
-            {
-                noneRadioValues && noneRadioValues.map(({onChange, validate, value, label, ...props}, index) => (
-                    <Row key={index}>
-                        <Col>
-                            <FormGroup style={{ textAlign: 'left' }} row>
-                                <Col xs={12} sm={12} md={12} lg={2}>
-                                    <Label for="exampleEmail">{label}</Label>
-                                </Col>
-                                <Col xs={12} sm={12} md={12} lg={10}>
-                                    {/* eslint-disable-next-line no-eval */}
-                                    <Input invalid={error && validate} {...props} value={eval(value)} onChange={eval(onChange)} />
-                                    <FormFeedback invalid={error}>{error}</FormFeedback>
-                                </Col>
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                ))
-            }
-            <Row style={{textAlign:'center', padding: '10px'}}>
-                <Col>
-                    <Button onClick={submitForm}>Submit</Button>
-                </Col>
-            </Row>
-        </Thumbnail>
+                }
+                <Row style={{textAlign:'center', padding: '10px'}}>
+                    <Col>
+                        <Button onClick={submitForm}>Submit</Button>
+                    </Col>
+                </Row>
+            </Thumbnail>
+        </Page>
     )
 };

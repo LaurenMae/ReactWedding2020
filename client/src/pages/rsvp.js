@@ -6,6 +6,13 @@ import _ from 'lodash';
 import { useHistory } from "react-router-dom";
 
 import './rsvp.scss';
+import styled from 'styled-components';
+
+const Page = styled.div`
+    text-align: center;
+    margin: 0 10%;
+    width: 80%;
+`;
 
 const urlDefault = window.location.host.replace('3000', '3001');
 const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
@@ -82,7 +89,7 @@ export default function RSVP() {
     };
 
     return (
-        <div className="rsvp_container">
+        <Page className="rsvp_container">
             {
                 !deadlinePassed &&
                 <>
@@ -104,6 +111,6 @@ export default function RSVP() {
             {
                 deadlinePassed && <DeadlinePassed />
             }
-        </div>
+        </Page>
     );
 }

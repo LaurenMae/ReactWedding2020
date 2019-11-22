@@ -16,7 +16,7 @@ export default function RsvpForm({ submit, values, setValues }) {
     };
 
     return (
-        <Thumbnail style={{ padding: '10px', width: '80%' }}>
+        <Thumbnail>
             <Row style={{textAlign:'center', padding: '10px'}}>
                 <Col>
                     <FormGroup style={{ textAlign: 'left' }} row>
