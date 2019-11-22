@@ -58,6 +58,7 @@ const retrieveAndPrintSheet = async (jwtClient, sheetId) => {
 }
 
 const updateAndPrintSheet = async (jwtClient, spreadsheetId, values) => {
+  console.log('google values', values)
     await sheets.spreadsheets.values.append({
       auth: jwtClient,
       spreadsheetId: spreadsheetId,

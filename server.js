@@ -31,7 +31,15 @@ app.listen(port, function() {
 
 app.post('/api/rsvp/', async (req, res) => {
     try {
-        const spreadsheetValues = [Object.values(req.body.values)];
+        const spreadsheetValues = [[
+            req.body.values.attendance,
+            req.body.values.firstName,
+            req.body.values.lastName,
+            req.body.values.email,
+            req.body.values.phone,
+            req.body.values.diet,
+            req.body.values.song
+        ]];
         await updateSpreadsheet(spreadsheetValues);
         await sendConfirmationEmail(req.body);
         res.sendStatus(200);
@@ -71,8 +79,8 @@ app.post('/api/getRsvpList', async (req, res) => {
         const resp = await returnSheet(req.body.sheetName, req.body.sheetRange);
         res.send(resp.map((row) => {
             return {
-                firstName: row[0] ? row[0].toLowerCase() : '',
-                lastName: row[1] ? row[1].toLowerCase() : ''
+                firstName: row[1] ? row[1].toLowerCase() : '',
+                lastName: row[2] ? row[2].toLowerCase() : ''
             };
         }));
     } catch (err) {
@@ -139,17 +147,21 @@ const updateSpreadsheet = async(spreadsheetValues) => {
 };
 
 const sendConfirmationEmail = async (inviteResponse) => {
-    console.log(inviteResponse);
+    const locals = {
+        name: inviteResponse.values.firstName,
+        attendance: inviteResponse.values.attendance
+    };
+
+    if (inviteResponse.hotels) {
+        locals.hotel = inviteResponse.hotels;
+    }
+
     email.send({
         template: 'rsvpConfirmation',
         message: {
             to: inviteResponse.values.email
         },
-        locals: {
-            name: inviteResponse.values.firstName,
-            attendance: inviteResponse.values.attendance,
-            hotel: inviteResponse.hotels
-        }
+        locals
     }).catch(console.error);
 };
 
