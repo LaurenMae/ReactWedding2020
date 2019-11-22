@@ -6,8 +6,7 @@ import {
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem,
-  Container
+  NavItem
 } from 'reactstrap';
 
 import navbarEntries from './navPages';
@@ -21,7 +20,7 @@ export default function MyNavbar() {
     }
 
     return (
-      <Container className='navbar-container'>
+      <div className='navbar-container'>
         <h1>Lauren & Jamie</h1>
         <Navbar light expand="lg">
           <NavbarToggler onClick={() => { setOpen(!isOpen); }} />
@@ -45,6 +44,6 @@ export default function MyNavbar() {
             </Nav>
           </Collapse>
         </Navbar>
-      </Container>
+      </div>
     );
   }
