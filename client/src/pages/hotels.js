@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { Button } from 'react-bootstrap';
 
 import HotelList from '../contexts/Hotels.json';
@@ -8,7 +8,7 @@ import './hotels.scss';
 
 export default function Hotels() {
     return (
-        <Container data-id='hotels-page'>
+        <div data-id='hotels-page'>
             <p>
                 For those who wish to stay near by the closest two hotels are listed below
             </p>
@@ -32,6 +32,6 @@ export default function Hotels() {
                     ))
                 }
             </Row>
-        </Container>
+        </div>
     );
 }

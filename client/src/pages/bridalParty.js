@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import BridalPartyList from '../contexts/BridalParty.json';
 import ImageThumbnail from '../components/ImageThumbnail';
 
@@ -7,9 +7,9 @@ import './bridalParty.scss';
 
 export default function BridalParty() {
     return (
-        <Container data-id='bridalParty-page' className='bridalParty-page'>
+        <div data-id='bridalParty-page' className='bridalParty-page'>
         {
-            <Container>
+            <div>
                 <Row>
                     {
                         BridalPartyList.map(({name, role, relation, image}, key) => (
@@ -23,9 +23,9 @@ export default function BridalParty() {
                         ))
                     }
                 </Row>
-            </Container>
+            </div>
         }
-        </Container>
+        </div>
     );
 }
 

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Container } from 'reactstrap';
 
 export default function OrderOfService() {
     return (
-        <Container style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center' }}>
             <h3>Getting There</h3>
             Our wedding ceremony and reception will be held at Hensol Castle.  The castle is
             on the grounds of the Vale Hotel, guests staying at the hotel will be able to use the 
@@ -17,7 +16,7 @@ export default function OrderOfService() {
 
             <h3>Staying There</h3>
             If you wish to stay at the Vale Hotel and have not already booked a room, please contact the hotel directly - more details on the where to stay page (link).  01443 667800
-        </Container>
+        </div>
     );
 }
 

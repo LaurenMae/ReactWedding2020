@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from 'reactstrap';
 import Countdown from '../components/Countdown';
 import DeadlinePassed from './deadlinePassed';
 import RsvpForm from './rsvpForm';
@@ -83,18 +82,18 @@ export default function RSVP() {
     };
 
     return (
-        <Container className="rsvp_container">
+        <div className="rsvp_container">
             {
                 !deadlinePassed &&
                 <>
                     <h4>Please RSVP by 1st February 2020</h4>
-                    <Container className="countdown">
+                    <div className="countdown">
                         <Countdown 
                             title='Remaining Response Time'
                             dateTo='February 1, 2020 23:59:59 GMT+01:00'
                             mostSignificantFigure="day"
                             callback={() => countdownReached()} />
-                    </Container>
+                    </div>
                     {
                         guestList && _.isUndefined(guest) &&
                         <RsvpForm submit={searchName} values={values} setValues={setValues} />
@@ -105,6 +104,6 @@ export default function RSVP() {
             {
                 deadlinePassed && <DeadlinePassed />
             }
-        </Container>
+        </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import Destinations from '../contexts/HoneymoonStops.json';
 
 import './gifts.scss';
@@ -7,7 +7,7 @@ import ImageCarousel from '../components/ImageCarousel';
 
 export default function Gifts() {
     return (
-        <Container>
+        <div>
             <Row>
                 <Col xs={12} sm={12} md={12} lg={7}>
                     <ImageCarousel images={Destinations} />
@@ -30,7 +30,7 @@ export default function Gifts() {
                     </div> 
                 </Col>
             </Row> 
-        </Container>
+        </div>
     );
 }
 
