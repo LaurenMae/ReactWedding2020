@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
+import OrderOfService from './orderOfService';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Router><App /></Router>, div);
+  ReactDOM.render(<OrderOfService />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -4,6 +4,7 @@ import DeadlinePassed from './deadlinePassed';
 import RsvpForm from './rsvpForm';
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
+import { getRsvpForGuest, getGuestList, getRsvpList } from './helpers';
 
 import './rsvp.scss';
 import styled from 'styled-components';
@@ -13,9 +14,6 @@ const Page = styled.div`
     margin: 0 10%;
     width: 80%;
 `;
-
-const urlDefault = window.location.host.replace('3000', '3001');
-const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
 
 export default function RSVP() {
     const history = useHistory();
@@ -36,40 +34,12 @@ export default function RSVP() {
 
     const searchName = (event) => {
         event.preventDefault();
-        const guest = _.find(guestList, { firstName: values.firstName.toLowerCase().trim(), lastName: values.lastName.toLowerCase().trim()});
-        const existingRsvp = _.find(rsvpList, { firstName: values.firstName.toLowerCase().trim(), lastName: values.lastName.toLowerCase().trim()});
-        if (_.isUndefined(guest)) {
-            alert('No guest matching specific name found, please contact couple');
-        } else if (existingRsvp) {
-            alert('RSVP already found'); // TODO modal
-        } else {
+        const guest = getRsvpForGuest(guestList, rsvpList, values.firstName, values.lastName);
+        
+        if (guest) {
             setGuest(guest);
             history.push(`/RSVP/${guest.firstName}${guest.lastName}`, values);
         }
-    };
-
-    const getGuestList = async() => {
-        const resp = await fetch(`${apiUrl}/api/getGuestList`, {
-            method: 'get',
-            mode: 'cors',
-            headers: {'Content-Type': 'application/json'}
-        });
-
-        return await resp.json();
-    };
-
-    const getRsvpList = async() => {
-        const resp = await fetch(`${apiUrl}/api/getRsvpList`, {
-            method: 'post',
-            mode: 'cors',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                sheetName: 'test',
-                sheetRange: 'A2:G250'
-            })
-        });
-
-        return await resp.json();
     };
 
     useEffect(() => {

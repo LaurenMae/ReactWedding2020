@@ -16,7 +16,7 @@
     "react-dom": "^16.8.6",
     "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
-    "react-scripts": "2.1.1",
+    "react-scripts": "^3.3.0",
     "react-simple-maps": "^0.12.1",
     "react-usa-map": "^1.4.0",
     "reactstrap": "^8.0.1",
@@ -40,6 +40,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cypress": "^3.4.1"
+    "cypress": "^3.4.1",
+    "jest-fetch-mock": "^2.1.2",
+    "jest-mock-console": "^1.0.0"
   }
 }

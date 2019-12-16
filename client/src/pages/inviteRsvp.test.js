@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
+import InviteRsvp from './InviteRsvp';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Router><App /></Router>, div);
+  const history = {
+    location: {
+      state: {
+
+      }
+    }
+  }
+  ReactDOM.render(<InviteRsvp history={history} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

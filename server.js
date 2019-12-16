@@ -1,82 +1,45 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const nodemailer = require('nodemailer');
-const nconf = require('nconf');
-const Email = require('email-templates');
+const emailHelper = require('./helpers/emailHelper');
+const sheetHelper = require('./helpers/sheetsHelper');
 
-nconf.argv()
-    .env()
-    .file({ file: 'config-overrides.json' });
-
-const googleSheetsHelper = require('./helpers/googleSheetsHelper');
-const port = process.env.PORT || 3001;
 const clientAppDirectory = 'client/build';
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: nconf.get('emailUsername'),
-        pass: nconf.get('emailPassword')
-    }
-});
 
 app.use(cors());
 app.use(require("body-parser").json());
 app.use(express.static(clientAppDirectory));
 
-app.listen(port, function() {
-    console.log(`listening on ${port}`);
-});
-
 app.post('/api/rsvp/', async (req, res) => {
-    try {
-        const spreadsheetValues = [[
-            req.body.values.attendance,
-            req.body.values.firstName,
-            req.body.values.lastName,
-            req.body.values.email,
-            req.body.values.phone,
-            req.body.values.diet,
-            req.body.values.song
-        ]];
-        await updateSpreadsheet(spreadsheetValues);
-        await sendConfirmationEmail(req.body);
-        res.sendStatus(200);
-    } catch (spreadsheetError) {
-        console.error('Error when updating spreadsheet: ', spreadsheetError);
-        await sendEmail('Wedding App Error', `Updating spreadsheet error: ${JSON.stringify(error)}`)
-
-        res.sendStatus(500);
-    }
+    const spreadsheetValues = [[
+        req.body.values.attendance,
+        req.body.values.firstName,
+        req.body.values.lastName,
+        req.body.values.email,
+        req.body.values.phone,
+        req.body.values.diet,
+        req.body.values.song
+    ]];
     
     try {
-        const emailInfo = await sendEmail(`RSVP, ${req.body.name}`, JSON.stringify(req.body));
+        await sheetHelper.update(spreadsheetValues, req.body);
+        const emailInfo = await emailHelper.sendEmail(`RSVP, ${req.body.firstName}`, JSON.stringify(req.body));
         console.info(`Message sent: ${emailInfo.messageId}`);
+        res.send(200);
     }
     catch (emailError) {
         console.error(
             `Error when sending RSVP update email! RSVP was ${JSON.stringify(req.body, null, 2)}, error was: `, 
             emailError
         );
+        res.send(500);
     }
 });
 
-const returnSheet = async(name, range) => {
-    try {
-        const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
-        const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
-        return await googleSheetsHelper.retrieveSheet(jwtClient, weddingSpreadsheetId, name, range);
-    } catch (err) {
-        console.error(`Error reading spreadsheet: ${err}`);
-        sendEmail('Wedding App Error', `Reading spreadsheet error: ${JSON.stringify(err)}`);
-        throw error;
-    }
-};
-
 app.post('/api/getRsvpList', async (req, res) => {
+    
     try {
-        const resp = await returnSheet(req.body.sheetName, req.body.sheetRange);
+        const resp = await sheetHelper.returnSheet(req.body.sheetName, req.body.sheetRange);
         res.send(resp.map((row) => {
             return {
                 firstName: row[1] ? row[1].toLowerCase() : '',
@@ -84,13 +47,14 @@ app.post('/api/getRsvpList', async (req, res) => {
             };
         }));
     } catch (err) {
-        throw err;
+        console.error('Problem getting RSVP list', err);
+        res.send(500);
     }
 });
 
 app.post('/api/hotelBooking/:firstName/:lastName', async (req, res) => {
     try {
-        const resp = await returnSheet(req.body.sheetName, req.body.sheetRange);
+        const resp = await sheetHelper.returnSheet(req.body.sheetName, req.body.sheetRange);
         const bookings = resp.map(booking => {
             return {
                 dates: booking[0],
@@ -113,16 +77,18 @@ app.post('/api/hotelBooking/:firstName/:lastName', async (req, res) => {
             res.send(null);
         }
     } catch (err) {
-        throw err;
+        console.error('Error getting hotel info', err);
+        res.send(500);
     }
 });
 
 app.get('/api/getGuestList', async (req, res) => {
     try {
-        const resp = await returnSpreadsheet();
+        const resp = await sheetHelper.returnSpreadsheet();
         res.send(resp);
     } catch (err) {
-        throw err;
+        console.error('Error getting guest list', err);
+        res.send(500);
     }
 });
 
@@ -130,58 +96,4 @@ app.get('*', function (req, res) {
     res.status(200).sendFile(`/`, { root: clientAppDirectory });
 });
 
-
-const email = new Email({
-  message: {
-      from: '"Wedding App" <lauren.mae.welsh@gmail.com>', 
-  },
-  preview: false,
-  send: true,
-  transport: transporter
-});
-
-const updateSpreadsheet = async(spreadsheetValues) => {
-    const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
-    const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
-    await googleSheetsHelper.updateAndPrintSheet(jwtClient, weddingSpreadsheetId, spreadsheetValues);
-};
-
-const sendConfirmationEmail = async (inviteResponse) => {
-    const locals = {
-        name: inviteResponse.values.firstName,
-        attendance: inviteResponse.values.attendance
-    };
-
-    if (inviteResponse.hotels) {
-        locals.hotel = inviteResponse.hotels;
-    }
-
-    email.send({
-        template: 'rsvpConfirmation',
-        message: {
-            to: inviteResponse.values.email
-        },
-        locals
-    }).catch(console.error);
-};
-
-const returnSpreadsheet = async() => {
-    try {
-        const jwtClient = await googleSheetsHelper.createAndConnectJwtClient();
-        const weddingSpreadsheetId = '1hA-6gL8cQfmUtkGAKGuZYJBNkupgb0aB_3tDciPM15I';
-        return await googleSheetsHelper.retrieveAndPrintSheet(jwtClient, weddingSpreadsheetId);
-    } catch (err) {
-        console.error(`Error reading spreadsheet: ${err}`);
-        sendEmail('Wedding App Error', `Reading spreadsheet error: ${JSON.stringify(err)}`);
-        throw error;
-    }
-};
-
-const sendEmail = async (subject, text) => {
-    return await transporter.sendMail({
-        from: '"Wedding App" <lauren.mae.welsh@gmail.com>',
-        to: "lauren.mae.welsh@gmail.com",
-        subject,
-        text
-    });
-};
+module.exports = app;

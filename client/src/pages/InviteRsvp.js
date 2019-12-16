@@ -15,15 +15,13 @@ import Done from '@material-ui/icons/Done';
 import './inviteRsvp.scss';
 import rsvpFormEntries from './rsvpEntries.json';
 import styled from 'styled-components';
+import { getHotelBookings, rsvp } from './helpers';
 
 const Page = styled.div`
     text-align: center;
     margin: 0 10%;
     width: 80%;
 `;
-
-const urlDefault = window.location.host.replace('3000', '3001');
-const apiUrl = _.get(process.env, 'REACT_APP_API_URL', `http://${urlDefault}`);
 
 export default function InviteRsvp({ history }) {
     const [values, setValues] = useState(history.location.state);
@@ -59,29 +57,18 @@ export default function InviteRsvp({ history }) {
     };
 
     const update = async () => {
-        const guestRooms = await fetch(`${apiUrl}/api/hotelBooking/${values.firstName}/${values.lastName}`, {
-            method: 'post',
-            mode: 'cors',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                sheetName: 'Guest Rooms',
-                sheetRange: 'A2:G25'
-            })
-        });
+        const roomDetails = await getHotelBookings(values.firstName, values.lastName);
 
-        const roomDetails = await guestRooms.json();
+        try {
+            await rsvp({ values: {...values}, hotels: {...roomDetails} });
 
-        await fetch(`${apiUrl}/api/rsvp`, {
-            method: 'post',
-            mode: 'cors',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ values: {...values}, hotels: {...roomDetails} })
-        });
-
-        history.push(`/RSVP/${values.firstName}${values.lastName}/thankyou`, {
-            email: values.email,
-            attendance: values.attendance
-        });
+            history.push(`/RSVP/${values.firstName}${values.lastName}/thankyou`, {
+                email: values.email,
+                attendance: values.attendance
+            });
+        } catch (err) {
+            console.error('Error during rsvp', err); // TODO - handle to user
+        }
     };
 
     return (
