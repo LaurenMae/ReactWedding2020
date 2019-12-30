@@ -10,7 +10,7 @@ app.use(cors());
 app.use(require("body-parser").json());
 app.use(express.static(clientAppDirectory));
 
-app.post('/api/rsvp/', async (req, res) => {
+app.post('/api/rsvp', async (req, res) => {
     const spreadsheetValues = [[
         req.body.values.attendance,
         req.body.values.firstName,
@@ -37,10 +37,10 @@ app.post('/api/rsvp/', async (req, res) => {
 });
 
 app.post('/api/getRsvpList', async (req, res) => {
-    
     try {
-        const resp = await sheetHelper.returnSheet(req.body.sheetName, req.body.sheetRange);
-        res.send(resp.map((row) => {
+        const sheet = await sheetHelper.returnSheet(req.body.sheetName, req.body.sheetRange);
+
+        res.send(sheet.map((row) => {
             return {
                 firstName: row[1] ? row[1].toLowerCase() : '',
                 lastName: row[2] ? row[2].toLowerCase() : ''
@@ -74,7 +74,7 @@ app.post('/api/hotelBooking/:firstName/:lastName', async (req, res) => {
         if (hotelBooking) {
             res.send(hotelBooking);
         } else {
-            res.send(null);
+            res.send({});
         }
     } catch (err) {
         console.error('Error getting hotel info', err);

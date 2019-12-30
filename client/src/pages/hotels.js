@@ -40,7 +40,8 @@ export default function Hotels() {
     return (
         <Page data-id='hotels-page'>
             <p>
-                For those who wish to stay near by the closest two hotels are listed below
+                For those who wish to stay near by the closest two hotels are listed below. If you wish to stay either hotel, and have not already booked a room,
+                please contact the hotel directly.
             </p>
             <Row>
                 {

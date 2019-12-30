@@ -40,6 +40,7 @@ export default function Gifts() {
                         Would be appreciated such a lot, <br />
                         But the most important thing to say, <br />
                         Is that you are there to celebrate our day! <br />
+                        <br />
                         <span className='fancy-font'>Lauren & Jamie</span>
                     </Poem> 
                 </Col>

@@ -4,20 +4,31 @@ div(style={ border: '5px double rgba(240, 0, 0, .5)', 'border-radius': '100%', m
 p Hi #{name},
 
 if attendance === 'attending'
-    p We have received your RSVP, we can't wait to share our day with you!
-    p If you wish to alter your RSVP or need any other information please contact us.
+   p We can't wait to share our day with you!
 else
-    p We have received your RSVP, we are sorry you aren't able to share our day
-    p If you wish to alter your RSVP or need any other information please contact us.
+   p We are sorry you aren't able to share our day
 
-if (hotel)
-    p we have a reservation for you
-    p #{hotel.dates}
-    p #{hotel.roomType}
-    p #{hotel.name}
-    p #{hotel.cost}
-    p #{hotel.paid}
-    p #{hotel.outstanding}
-    p #{hotel.due}
+p.
+  If you need to alter your RSVP or need any other information please contact either of us.
+  
+if (hotel && hotel.name)
+    p(style={ 'text-decoration': 'underline' }) There is a reservation for you at the Vale Hotel
+    p.
+      Date(s) of booking: #{hotel.dates} <br />
+      Reservation name: #{hotel.name} <br />
+      Room: #{hotel.roomType} <br />
+      Cost of reservation: #{hotel.cost} <br />
+      Outstanding: #{hotel.outstanding} <br />
+    p.
+      This booking is part of the wedding block so cannot be paid directly to the hotel. <br />
+      Please transfer the outstanding amount by #{hotel.due} using your name as reference to: <br />
+      Sort Code: <b>04-00-04</b> <br />
+      Account Number: <b>66614328</b> <br />
+      Bank Name: <b>Monzo</b> <br />
+    p.
+      If you have any questions about the booking feel free to call either of us.
 
-// TODO hotel information?
+p.
+  Lauren & Jamie <br />
+  Lauren: 07772985769 <br />
+  Jamie: 07805375826 <br />

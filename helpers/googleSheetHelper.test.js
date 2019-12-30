@@ -139,7 +139,7 @@ describe('googleSheetsHelper', () => {
             expect(mockAppend).toHaveBeenCalledWith({
                 auth: jwtClient,
                 spreadsheetId: sheetId,
-                range: 'test!A2:D2',
+                range: 'rsvp!A2:D2',
                 valueInputOption: 'USER_ENTERED',
                 resource: {
                     values

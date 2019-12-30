@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const Email = require('email-templates');
 const nconf = require('nconf');
+const _ = require('lodash');
 
 nconf.argv()
     .env()
@@ -34,7 +35,7 @@ const sendEmail = async (subject, text) => {
 
 const sendConfirmationEmail = async (inviteResponse) => {
     const locals = {
-        name: inviteResponse.values.firstName,
+        name: _.startCase(inviteResponse.values.firstName),
         attendance: inviteResponse.values.attendance
     };
 

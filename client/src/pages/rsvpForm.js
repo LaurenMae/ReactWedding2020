@@ -17,6 +17,10 @@ export default function RsvpForm({ submit, values, setValues }) {
 
     return (
         <Thumbnail>
+            <Row style={{textAlign:'center', padding: '10px', display: 'block'}}>
+                Please enter your name below <br />
+                Each named guest will need to RSVP separately
+            </Row>
             <Row style={{textAlign:'center', padding: '10px'}}>
                 <Col>
                     <FormGroup style={{ textAlign: 'left' }} row>

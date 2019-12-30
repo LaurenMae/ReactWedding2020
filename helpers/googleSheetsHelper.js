@@ -21,7 +21,7 @@ const retrieveSheet = async (jwtClient, sheetId, name, range) => {
       range: `${name}!${range}`
     });
 
-    return response.data.values;
+    return response.data.values || [];
   }
   catch (error) {
     console.error('Failed retrieving sheet data', error);
@@ -55,7 +55,7 @@ const updateAndPrintSheet = async (jwtClient, spreadsheetId, values) => {
     await google.sheets('v4').spreadsheets.values.append({
       auth: jwtClient,
       spreadsheetId: spreadsheetId,
-      range: 'test!A2:D2',
+      range: 'rsvp!A2:D2',
       valueInputOption: 'USER_ENTERED',
       resource: {
         values

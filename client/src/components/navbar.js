@@ -22,6 +22,7 @@ export default function MyNavbar() {
     return (
       <div className='navbar-container'>
         <h1>Lauren & Jamie</h1>
+        <div>27th June 2020 at 1.30pm</div>
         <Navbar light expand="lg">
           <NavbarToggler onClick={() => { setOpen(!isOpen); }} />
           <Collapse isOpen={isOpen} navbar>

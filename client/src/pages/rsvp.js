@@ -5,6 +5,7 @@ import RsvpForm from './rsvpForm';
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
 import { getRsvpForGuest, getGuestList, getRsvpList } from './helpers';
+import { Modal, Button } from 'react-bootstrap';
 
 import './rsvp.scss';
 import styled from 'styled-components';
@@ -31,12 +32,17 @@ export default function RSVP() {
     const [rsvpList, setRsvpList] = useState([]);
     const [guest, setGuest] = useState();
     const [deadlinePassed, setDeadlinePassed] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [modalContent, setModalContent] = useState(null);
 
     const searchName = (event) => {
         event.preventDefault();
         const guest = getRsvpForGuest(guestList, rsvpList, values.firstName, values.lastName);
         
-        if (guest) {
+        if (typeof guest === 'string') {
+            setShowModal(true);
+            setModalContent(guest);
+        } else {
             setGuest(guest);
             history.push(`/RSVP/${guest.firstName}${guest.lastName}`, values);
         }
@@ -58,29 +64,44 @@ export default function RSVP() {
         setDeadlinePassed(true);
     };
 
-    return (
-        <Page className="rsvp_container">
-            {
-                !deadlinePassed &&
-                <>
-                    <h4>Please RSVP by 1st February 2020</h4>
-                    <div className="countdown">
-                        <Countdown 
-                            title='Remaining Response Time'
-                            dateTo='February 1, 2020 23:59:59 GMT+01:00'
-                            mostSignificantFigure="day"
-                            callback={() => countdownReached()} />
-                    </div>
-                    {
-                        guestList && _.isUndefined(guest) &&
-                        <RsvpForm submit={searchName} values={values} setValues={setValues} />
-                    }
+    const handleClose = () => {
+        setShowModal(false);
+    };
 
-                </>
-            }
-            {
-                deadlinePassed && <DeadlinePassed />
-            }
-        </Page>
+    return (
+        <>
+            <Modal show={showModal} onHide={handleClose}>
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body>{modalContent}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <Page className="rsvp_container">
+                {
+                    !deadlinePassed &&
+                    <>
+                        <h4>Please RSVP by 1st February 2020</h4>
+                        <div className="countdown">
+                            <Countdown 
+                                title='Remaining Response Time'
+                                dateTo='February 1, 2020 23:59:59 GMT+01:00'
+                                mostSignificantFigure="day"
+                                callback={() => countdownReached()} />
+                        </div>
+                        {
+                            guestList && _.isUndefined(guest) &&
+                            <RsvpForm submit={searchName} values={values} setValues={setValues} />
+                        }
+
+                    </>
+                }
+                {
+                    deadlinePassed && <DeadlinePassed />
+                }
+            </Page>
+        </>
     );
 }

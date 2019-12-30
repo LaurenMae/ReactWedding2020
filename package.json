@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "node server.js",
+    "start": "node app.js",
     "build": "cd client && npm ci && REACT_APP_API_URL=\"\" npm run build"
   },
   "devDependencies": {

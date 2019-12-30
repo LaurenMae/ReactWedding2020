@@ -12,7 +12,9 @@ export default function RsvpConfirmation({ history }) {
                 <h2 style={{ color: 'rgba(240, 0, 0, .5)'}}>Thank you</h2>
             </div>
             <br />
-            A confirmation email has been sent to {history.location.state.email} <br />
+            {
+                history.location.state.email !== '' && <>A confirmation email has been sent to {history.location.state.email} <br /></>
+            }
             {
                 history.location.state.attendance === 'attending'
                     ? <span>We can't wait to share our day with you</span>
